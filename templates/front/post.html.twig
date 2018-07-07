@@ -1,0 +1,39 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block pageContent %}
+    <section>
+        <div class="section-header flex-column mx-auto">
+            <h2 class="dce-text-dark dce-bg-light text-center underlined">{{ post.title }}</h2>
+            <div class="section-description d-flex">
+                <div class="section-socials">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter-square"></i></a>
+                </div>
+                <div class="section-metas">
+                    <p class="article-date">Publié le {{ post.added|localizeddate('medium', 'none') }}</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="single-article dce-bg-dark dce-text-light offset-1 col-md-10">
+            <article>
+                <div class="article-image">
+                    {% if post.image is not null %}
+                        <img src="{{ post.image.url }}" alt="{{ post.image.alt }}" class="img-fluid"/>
+                    {% endif %}
+                </div>
+                <div class="article-content">
+                    <p class="article-text">
+                        {{ post.content|raw }}
+                    </p>
+                </div>
+            </article>
+        </div>
+        <div class="articles-navigation offset-3 col-md-6">
+            <a href="#" class="dce-btn dce-btn-red"><i class="fas fa-chevron-left"></i>précédent</a>
+            <a href="#" class="dce-btn dce-btn-red">suivant <i class="fas fa-chevron-right"></i></a>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,3 @@
+{% for event in events %}
+    <li class="dropdown-item"><a href="{{ path('front_event', {'slug' : event.slug}) }}">{{ event.title }}</a></li>
+{% endfor %}

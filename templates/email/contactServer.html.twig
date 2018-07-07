@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<h3>Une personne vous a contacté sur www.danceconceptevent.com</h3>
+
+Date: {{ datas.added|date }}
+<br>
+Nom : {{ datas.name|capitalize }}
+<br>
+Prénom : {{ datas.firstname|capitalize }}
+<br>
+Société : {{ datas.company|capitalize }}
+<br>
+Email: {{ datas.email }}
+<br>
+Sujet du message: {{ datas.subject }}
+<br>
+Message : {{ datas.content }}
+</body>
+
+</html>
+

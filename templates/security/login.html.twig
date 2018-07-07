@@ -1,0 +1,25 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block pageContent %}
+    <section>
+        <div class="section-header flex-column mx-auto">
+            <h2 class="dce-text-dark dce-bg-light text-center underlined">Connexion</h2>
+        </div>
+        <div class="single-article dce-bg-dark dce-text-light offset-3 col-md-6 text-center px-5 p-3">
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+            {{ form_start(form) }}
+            {{ form_row(form._username) }}
+            {{ form_row(form._password) }}
+            <button type="submit" class="dce-btn dce-btn-red">Connexion <i class="fas fa-key"></i></button>
+            {{ form_end(form) }}
+        </div>
+
+    </section>
+{% endblock %}

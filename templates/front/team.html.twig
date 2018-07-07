@@ -1,0 +1,36 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}La team{% endblock %}
+
+{% block pageContent %}
+
+    <section>
+        <div class="section-header">
+            <h2 class="dce-text-dark dce-bg-light underlined">L'équipe</h2>
+        </div>
+        <div class="single-article col-md-12">
+            {% if team is not empty %}
+                <article class=" flex-column">
+                    <div class="article-content equipe col-md-12 d-flex flex-space-between dce-bg-dark dce-text-light">
+                        <div class="grid col-md-12">
+                            {% for teammate in team %}
+                                <figure class="col-12 col-md-2">
+                                    <a href="{{ teammate.image.url }}"
+                                       data-lightbox="roadtrip">
+                                        <img
+                                                src="{{ teammate.image.url }}" alt="{{ teammate.image.alt }}"
+                                                class="img-fluid">
+                                    </a>
+                                    <figcaption>
+                                        <h5>{{ teammate.name }}</h5>
+                                        <p>{{ teammate.description }}</p>
+                                    </figcaption>
+                                </figure>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </article>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

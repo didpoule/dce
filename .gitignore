@@ -35,3 +35,19 @@
 
 # Composer PHAR
 /composer.phar
+
+\.idea/
+
+node_modules/
+
+public/\.DS_Store
+
+public/build/
+
+public/upload/
+
+assets/\.DS_Store
+
+\.DS_Store
+
+*.lock

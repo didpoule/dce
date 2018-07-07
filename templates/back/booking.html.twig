@@ -1,0 +1,10 @@
+{% extends "back_template.html.twig" %}
+
+{% block title %}Édition d'une réservation{% endblock %}
+{% block adminContent %}
+    <h2 class="dce-text-dark dce-bg-light text-center underlined">Édition d'une réservation</h2>
+    <h3>Workshop: {{ event.title }}</h3>
+    {{ form_start(form, {'attr': {'id' : 'admin-booking-form'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

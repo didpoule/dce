@@ -1,0 +1,3 @@
+{% for gallery in galleries %}
+    <li class="dropdown-item"><a href="{{ path('front_gallery', {'slug' : gallery.event.slug}) }}">{{ gallery.event.title }}</a></li>
+{% endfor %}

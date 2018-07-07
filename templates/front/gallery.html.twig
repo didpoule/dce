@@ -1,0 +1,52 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{{ gallery.event.title }}{% endblock %}
+
+{% block pageContent %}
+    <section>
+        <div class="section-header flex-column mx-auto">
+            <h2 class="dce-text-dark dce-bg-light text-center underlined">{{ gallery.event.title }}: Photos</h2>
+            <div class="section-description d-flex">
+                <div class="section-socials">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter-square"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="section-metas">
+                    <p class="article-date">Date: {{gallery. event.added|localizeddate('medium', 'none') }}</p>
+                    <p class="article-date">Lieu: {{ gallery.event.place }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="single-article col-md-12">
+            <article class=" flex-column">
+                <div class="article-image col-md-4">
+                    <img src="{{ gallery.event.image.url }}" alt="{{ gallery.event.image.alt }}" class="img-fluid"/>
+                </div>
+                <div class="article-content col-md-12 d-flex flex-space-between dce-bg-dark dce-text-light">
+                    <div class="galerie-prev galerie-nav">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+
+                    <ul class="grid col-md-10 clearfix" id="galerie">
+                        {% for picture in pictures %}
+                            <li class="col-md-2"><a href="{{ picture.url }}" data-lightbox="roadtrip">
+                                    <img src="{{ picture.url }}" alt="{{ picture.alt }}" class="img-fluid galerie-img">
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="galerie-next galerie-nav">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="articles-navigation offset-2">
+            <a href="{{ path('front_galleries') }}" class="dce-btn dce-btn-red"><i class="fas fa-chevron-left"></i>Retour à la liste</a>
+        </div>
+        <div id="gallery-datas" data-url="{{ url('front_ajax_gallery', {'slug' :  gallery.event.slug }) }}"
+             data-count="{{ count }}">
+        </div>
+    </section>
+{% endblock %}

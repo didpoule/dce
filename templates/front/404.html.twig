@@ -1,0 +1,8 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Erreur 404{% endblock %}
+{% block pageContent %}
+    <h2>Erreur 404</h2>
+    <p>{{ message }}</p>
+    <a href="{{ path('front_home') }}" class="dce-btn dce-btn-red">Retourner à l'accueil</a>
+{% endblock %}

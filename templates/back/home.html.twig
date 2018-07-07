@@ -1,0 +1,54 @@
+{% extends "back_template.html.twig" %}
+{% block title %}Administration{% endblock %}
+{% block adminContent %}
+    <h2 class="dce-text-dark dce-bg-light text-center underlined">Tableau de bord</h2>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card mb-5 col-md-5 col-sm-12 text-center" onclick="window.location = '#'">
+                <div class="card-body">
+                    <h3>{{ event.event.title }}</h3>
+                    <div class="dashboard-number">
+                        <span>{{ event.count }}</span>
+                    </div>
+                    <h4>réservations</h4>
+                    <p>
+                        <a href="" class="dce-btn dce-btn-red">Tout voir</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-5 offset-md-2 col-md-5 col-sm-12 text-center" onclick="window.location = '#'">
+                <div class="card-body">
+                    <h3>Contact</h3>
+                    <div class="dashboard-number">
+                        <span>{{ contact }}</span>
+                    </div>
+                    <h4>messages</h4>
+                    <p>
+                        <a href="#" class="dce-btn dce-btn-red">Tout voir</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-5 col-md-5 col-sm-12 text-center" onclick="window.location = '#'">
+                <div class="card-body">
+                    <h3>News</h3>
+                    <div class="dashboard-number">
+                        <span>{{ posts }}</span>
+                    </div>
+                    <h4>articles</h4>
+                    <p>
+                        <a href="#" class="dce-btn dce-btn-red">Tout voir</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-5 offset-md-2 col-md-5 col-sm-12 text-center" onclick="window.location = '#'">
+                <div class="card-body">
+                    <h3>Galeries</h3>
+                    <div class="dashboard-number">
+                        <span>{{ pictures }}</span>
+                    </div>
+                    <h4>photos</h4>
+                    <p>
+                        <a href="#" class="dce-btn dce-btn-red">Tout voir</a>
+                    </p>
+                </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Galeries{% endblock %}
+
+{% block pageContent %}
+    <section>
+        <div class="section-header">
+            <h2 class="dce-text-dark dce-bg-light underlined">Galeries</h2>
+        </div>
+        {% if galleries is not null %}
+            <div id="list-galleries" class="list-articles offset-2 col-md-8">
+                {% for gallery in galleries %}
+                    {% if gallery.extract is not empty %}
+                        <article class="dce-bg-dark dce-text-light d-flex">
+                            <div class="article-tumbnail col-md-4">
+                                {% if gallery.event.image is not null %}
+                                    <img src="{{ gallery.event.image.url }}" alt="{{ gallery.event.image.alt }}"
+                                         class="img-fluid img-responsive"/>
+                                {% endif %}
+                            </div>
+                            <div class="article-content d-flex flex-column col-md-8">
+                                <div class="article-header text-center mb-2">
+                                    <h3>{{ gallery.event.title }}</h3>
+                                    <p class="article-date">
+                                        Date: {{ gallery.event.added|localizeddate('medium', 'none') }}</p>
+                                    <p class="article-date">Lieu: {{ gallery.event.place }}</p>
+                                </div>
+                                <div class="grid galerie">
+                                    {% for picture in gallery.extract %}
+                                        <figure class="col-12 col-md-2"><img src="{{ picture.url }}"
+                                                                             alt="{{ picture.alt }}"
+                                                                             class="img-fluid">
+                                        </figure>
+                                    {% endfor %}
+                                </div>
+                                <div class="d-flex mx-auto">
+                                    <a href="{{ path('front_gallery', {'slug' : gallery.event.slug}) }}"
+                                       class="dce-btn dce-btn-red">Voir la galerie</a>
+                                </div>
+                            </div>
+                        </article>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% if pages > 1 %}
+                <div class="articles-pagination">
+                    <nav aria-label="articles pagination">
+                        <ul class="pagination">
+                            <li class="page-item galleries-prev"><a class="page-link" href="#">Précédente</a></li>
+                            {% for i in 0..pages - 1 %}
+                                <li class="page-item"><a class="page-link galleries-page" data-page="{{ i }}"
+                                                         href="#">{{ i + 1 }}</a></li>
+                            {% endfor %}
+                            <li class="page-item galleries-next"><a class="page-link" href="#">Suivante</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div id="galleries-datas" data-url="{{ url('front_ajax_galleries') }}"
+                     data-count="{{ count }}">
+                </div>
+            {% endif %}
+        {% else %}
+            Aucune galerie à afficher pour le moment...
+        {% endif %}
+    </section>
+{% endblock %}

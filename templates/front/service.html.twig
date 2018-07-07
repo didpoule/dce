@@ -1,0 +1,31 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{{ service.title }}{% endblock %}
+
+{% block pageContent %}
+    <section>
+        <div class="section-header flex-column mx-auto">
+            <h2 class="dce-text-dark dce-bg-light text-center underlined">{{ service.title }}</h2>
+            <div class="section-description d-flex">
+                <div class="section-socials">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="single-article dce-bg-dark dce-text-light offset-1 col-md-10">
+            <article>
+                <div class="article-image">
+                    {% if service.image is not null %}
+                        <img src="{{ service.image.url }}" alt="{{ service.image.alt }}" class="img-fluid"/>
+                    {% endif %}
+                </div>
+                <div class="article-content">
+                    <p class="article-text">
+                        {{ service.content|raw }}
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+{% endblock %}

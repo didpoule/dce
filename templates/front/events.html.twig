@@ -1,0 +1,54 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Workshops{% endblock %}
+
+{% block pageContent %}
+    <section>
+    <div class="section-header">
+        <h2 class="dce-text-dark dce-bg-light underlined">Workshops</h2>
+    </div>
+    {% if events is not empty %}
+        <div id="list-events" class="list-articles offset-2 col-md-8">
+            {% for event in events %}
+                <article class="dce-bg-dark dce-text-light d-flex">
+                    <div class="article-tumbnail col-md-6">
+                        {% if event.image is not null %}
+                            <img src="{{ event.image.url }}" alt="{{ event.image.alt }}" class="img-fluid"/>
+                        {% endif %}
+                    </div>
+                    <div class="article-content d-flex flex-column col-md-6">
+                        <h3>{{ event.title }}</h3>
+                        <p class="article-date">Date: {{ event.added|localizeddate('medium', 'none') }}</p>
+                        <p class="article-date">Lieu: {{ event.place }}</p>
+                        <p class="article-text">
+                            {{ event.content|truncate(450, true) }}
+                        </p>
+                        <div class="d-flex mx-auto">
+                            <a href="{{ path('front_event', {"slug": event.slug}) }}" class="dce-btn dce-btn-red">Plus
+                                d'infos</a>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        Pas encore d'évènement à afficher...
+    {% endif %}
+    {% if pages > 1 %}
+        <div class="articles-pagination">
+            <nav aria-label="articles pagination">
+                <ul class="pagination">
+                    <li class="page-item events-prev"><a class="page-link" href="#">Précédente</a></li>
+                    {% for i in 0..pages - 1 %}
+                        <li class="page-item"><a class="page-link events-page" data-page="{{ i }}"
+                                                 href="#">{{ i + 1 }}</a></li>
+                    {% endfor %}
+                    <li class="page-item events-next"><a class="page-link" href="#">Suivante</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="events-datas" data-url="{{ url('front_ajax_events') }}"
+             data-count="{{ count }}">
+        </div>
+    {% endif %}
+{% endblock %}

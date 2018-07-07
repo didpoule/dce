@@ -1,0 +1,51 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block pageContent %}
+    <section>
+        <div class="section-header flex-column mx-auto">
+            <h2 class="dce-text-dark dce-bg-light text-center underlined">{{ event.title }}</h2>
+            <div class="section-description d-flex">
+                <div class="section-socials">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter-square"></i></a>
+                </div>
+                <div class="section-metas">
+                    <p class="article-date">Date: {{ event.added|localizeddate('medium', 'none') }}</p>
+                    <p class="article-date">Lieu: {{ event.place }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="single-article dce-bg-dark dce-text-light offset-1 col-md-10">
+            <article>
+                <div class="article-image">
+                    {% if event.image is not null %}
+                        <img src="{{ event.image.url }}" alt="{{ event.image.alt }}" class="img-fluid"/>
+                    {% endif %}
+                </div>
+                <div class="article-content col-12">
+                    <p class="article-text">
+                        {{ event.content| raw }}
+                    </p>
+                    <iframe
+                            style="border:0"
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC4_uOwGVtnGwYu8Z52PeQQ8HsP4RKtNsw&q={{ event.place|url_encode }}">
+                    </iframe>
+                </div>
+                <a class="dce-btn dce-btn-red mb-4" id="booking-button" href="#booking-form">Réserver</a>
+
+                {{ form_start(form, {'attr': {'id' : 'booking-form', 'class': 'dce-form', 'hidden' : 'true'}}) }}
+                <h3 class="dce-text-dark text-center">Formulaire de réservation</h3>
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+
+            </article>
+        </div>
+        <div class="articles-navigation offset-2">
+            <a href="{{ path('front_events') }}" class="dce-btn dce-btn-red"><i class="fas fa-chevron-left"></i>Retour à la liste</a>
+        </div>
+    </section>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
