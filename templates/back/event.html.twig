@@ -3,7 +3,7 @@
 {% block title %}Édition d'un workshop{% endblock %}
 {% block adminContent %}
     <h2 class="dce-text-dark dce-bg-light text-center underlined">Édition d'un workshop</h2>
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'id' : 'admin-gallery-form', 'class': 'offset-md-2 col-md-8'}}) }}
     {{ form_row(form.title) }}
     {{ form_row(form.image) }}
     {{ form_row(form.added) }}

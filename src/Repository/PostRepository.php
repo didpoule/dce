@@ -59,9 +59,20 @@ class PostRepository extends ServiceEntityRepository {
 		            ->leftJoin( 'p.category', 'c' )
 		            ->addSelect( 'p' )
 		            ->where( 'c.name = :category' )
+		            ->andwhere( 'p.published = 1' )
 		            ->setParameter( 'category', 'posts' )
 		            ->setFirstResult( $first )
 		            ->setMaxResults( $limit )
+		            ->getQuery()
+		            ->execute();
+	}
+
+	public function findPosts() {
+		return $this->createQueryBuilder( 'p' )
+		            ->leftJoin( 'p.category', 'c' )
+		            ->addSelect( 'p' )
+		            ->where( 'c.name = :category' )
+		            ->setParameter( 'category', 'posts' )
 		            ->getQuery()
 		            ->execute();
 	}

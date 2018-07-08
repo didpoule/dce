@@ -1,0 +1,57 @@
+{% extends "back_template.html.twig" %}
+{% block title %}Prestations{% endblock %}
+{% block adminContent %}
+    <h2 class="dce-text-dark dce-bg-light text-center underlined">Prestations</h2>
+    <div class="tab-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if services is not empty %}
+                {% for service in services %}
+                    <tr>
+                        <td>{{ service.title }}</td>
+                        <td>{{ service.added|localizeddate('long', 'none') }}</td>
+                        <td class="d-none d-md-table-cell">{{ service.published ? "Oui" : "Non" }}</td>
+                        <td><a href="{{ path("back_service", {"id": service.id}) }}"><i class="fas fa-edit"></i></a> -
+                            <button class="btn btn-link" type="button" data-toggle="modal"
+                                    data-target="#remove-{{ service.id }}"><i
+                                        class="fas fa-trash-alt text-danger"></i></button>
+                        </td>
+                    </tr>
+                    <div class="modal fade" id="remove-{{ service.id }}" tabindex="-1" role="dialog"
+                         aria-labelledby="modal-label"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-label">Confirmer suppression de l'article</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes-vous sûr de vouloir supprimer cet article ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                                    <a class="btn btn-primary"
+                                       href="{{ path('back_post_delete', {'id' : service.id}) }}">Confirmer</a>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                {% endfor %}
+            {% else %}
+                <tr>
+                    Aucun article à afficher.
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

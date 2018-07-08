@@ -39,12 +39,12 @@
                     </h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/chapters">
+                            <a class="nav-link" href="{{ path('back_posts') }}">
                                 Toutes les news
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/chapter/new">
+                            <a class="nav-link" href="{{ path('back_post', {'id': 'new'}) }}">
                                 Créer une new
                             </a>
                         </li>
@@ -90,21 +90,21 @@
                     </h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/about">
+                            <a class="nav-link" href="{{ path('back_services') }}">
                                 Toutes les prestations
                             </a>
                         </li>
                     </ul>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/about">
+                            <a class="nav-link" href="{{ path('back_team') }}">
                                 Team DCE
                             </a>
                         </li>
                     </ul>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/about">
+                            <a class="nav-link" href="{{ path('back_club') }}">
                                 Club
                             </a>
                         </li>

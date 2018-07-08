@@ -51,3 +51,7 @@ assets/\.DS_Store
 \.DS_Store
 
 *.lock
+
+package-lock\.json
+
+var/

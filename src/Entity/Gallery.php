@@ -96,11 +96,13 @@ class Gallery {
 		return $this;
 	}
 
-	public function removePicture( Image $picture ): self {
+	public function removePicture( $picture ): self {
 		if ( $this->pictures->contains( $picture ) ) {
 			$this->pictures->removeElement( $picture );
-			// set the owning side to null (unless already changed)
-			if ( $picture->getGallery() === $this ) {
+
+			if ( $picture instanceof Image && $picture->getGallery() === $this ) {
+				// set the owning side to null (unless already changed)
+
 				$picture->setGallery( null );
 			}
 		}

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Event;
 use App\Entity\Gallery;
+use App\Entity\Image;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,17 +18,37 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GalleryType extends AbstractType {
 	public function buildForm( FormBuilderInterface $builder, array $options ) {
+
+		$entity = $builder->getData();
+
 		$builder
 			->add( 'event', EntityType::class, [
 				'label'         => 'Workshop',
 				'class'         => Event::class,
 				'query_builder' => function ( EntityRepository $er ) {
-					return $er->createQueryBuilder( 'e' );
+					$stmt = $er->createQueryBuilder( 'e' )->getQuery()->getResult();
+					foreach ( $stmt as $event ) {
+						if ( ! $event->getGallery() ) {
+							$results[] = $event;
+						}
+					}
+					$qb = $er->createQueryBuilder( 'e' );
+
+					foreach ( $results as $result ) {
+						$qb->andWhere( 'e.id = :id' )
+						   ->setParameter( 'id', $result->getId() );
+					}
+
+					return $qb;
 				},
-				'choice_label'  => 'title'
+				'choice_label'  => 'title',
+				'disabled'      => $entity ? true : false
 			] )
-			->add( 'pictures', PicturesType::class, [ 'label' => 'Ajouter des photos' ] )
-			->add( 'published', CheckboxType::class, [ 'label' => 'Publier immédiatement', 'required' => false ] )
+			->add( 'pictures', PicturesType::class, [
+				'label'      => 'Ajouter des photos',
+				'data_class' => $entity ? null : Image::class
+			] )
+			->add( 'published', CheckboxType::class, [ 'label' => 'Publier', 'required' => false ] )
 			->add( 'save', SubmitType::class, [
 				'label' => 'Envoyer',
 				'attr'  => array( 'class' => 'dce-btn dce-btn-red' )

@@ -50,7 +50,7 @@ class Post {
 	private $category;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="App\Entity\Image")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade="persist")
 	 */
 	private $image;
 

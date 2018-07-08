@@ -3,7 +3,7 @@
 {% block title %}Galerie{% endblock %}
 {% block adminContent %}
     <h2 class="dce-text-dark dce-bg-light text-center underlined">Galerie</h2>
-    {{ form_start(form, {'attr': {'id' : 'admin-gallery-form'}}) }}
+    {{ form_start(form, {'attr': {'id' : 'admin-gallery-form', 'class': 'offset-md-2 col-md-8'}}) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
 {% endblock %}

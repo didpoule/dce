@@ -1,0 +1,11 @@
+{% extends "back_template.html.twig" %}
+
+{% block title %}Team DCE{% endblock %}
+{% block adminContent %}
+    <h2 class="dce-text-dark dce-bg-light text-center underlined">Modification de la team</h2>
+    {{ form_start(form, {'attr': {'id' : 'admin-gallery-form', 'class': 'offset-md-2 col-md-8'}}) }}
+    {{ form_label(form.teammates) }}
+    {{ form_widget(form.teammates) }}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+{% endblock %}

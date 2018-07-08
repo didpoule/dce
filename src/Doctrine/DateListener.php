@@ -8,7 +8,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 class DateListener implements EventSubscriber {
 
 	public function getSubscribedEvents() {
-		return [ 'prePersist', 'preUpdate' ];
+		return [ 'prePersist' ];
 	}
 
 
@@ -16,11 +16,9 @@ class DateListener implements EventSubscriber {
 
 		$entity = $args->getEntity();
 
-		if (method_exists($entity, 'setAdded') && ! $entity->getAdded()) {
-			$entity->setAdded(new \DateTime());
+		if ( method_exists( $entity, 'setAdded' ) && ! $entity->getAdded() ) {
+			$entity->setAdded( new \DateTime() );
 		}
-
-
 	}
 
 

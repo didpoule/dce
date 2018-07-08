@@ -2,8 +2,10 @@
 
 namespace App\Handler;
 
+use App\Entity\Image;
 use App\Form\GalleryType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use TBoileau\FormHandlerBundle\Handler;
@@ -37,8 +39,27 @@ class GalleryHandler extends Handler {
 		$gallery = $this->form->getData();
 
 		foreach ( $gallery->getPictures() as $picture ) {
-			$picture->setAlt( $gallery->getEvent()->getTitle() );
+			if ( $picture instanceof Image ) {
+				$picture->setAlt( $gallery->getEvent()->getTitle() );
+				$gallery->addPicture( $picture );
+			} elseif ( is_array( $picture ) ) {
+				foreach ( $picture as $file ) {
+					if ( $file instanceof UploadedFile ) {
+						$image = new Image();
+						$image->setFile( $file );
+						$image->setGallery( $gallery );
+						$image->setAlt( $gallery->getEvent()->getTitle() );
+
+						$gallery->addPicture( $image );
+
+					}
+				}
+
+				$gallery->removePicture( $picture );
+			}
+
 		}
+
 		$this->em->persist( $gallery );
 
 		$this->em->flush();

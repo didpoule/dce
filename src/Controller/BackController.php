@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\Category;
 use App\Entity\Contact;
 use App\Entity\Event;
 use App\Entity\Gallery;
@@ -12,6 +13,8 @@ use App\Handler\AdminBookingHandler;
 use App\Handler\BookingHandler;
 use App\Handler\EventHandler;
 use App\Handler\GalleryHandler;
+use App\Handler\PostHandler;
+use App\Handler\TeamHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,6 +55,33 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @Route("/news", name="back_posts")
+	 */
+	public function postsAction() {
+		return $this->render( 'back/posts.html.twig', [
+			'posts' => $this->getDoctrine()->getRepository( Post::class )->findPosts()
+		] );
+	}
+
+	/**
+	 * @param Post $post
+	 * @Route("/new/{id}/delete", name="back_post_delete")
+	 * @ParamConverter("post", class="App\Entity\Post")
+	 */
+	public function removePostAction( Post $post ) {
+		if ( $post ) {
+			$em = $this->getDoctrine()->getManager();
+			$em->remove( $post );
+			$em->flush();
+
+			$this->addFlash( 'success', 'Supression effectuée.' );
+		}
+
+		return new RedirectResponse( $this->generateUrl( 'back_home' ) );
+	}
+
+	/**
 	 * @Route("/workshops", name="back_events")
 	 */
 	public function eventsAction() {
@@ -61,6 +91,62 @@ class BackController extends Controller {
 			'events' => $this->getDoctrine()->getRepository( Event::class )->findAll()
 		] );
 	}
+
+	/**
+	 * @param Post $post
+	 * @Route("/news/{id}", name="back_post")
+	 * @ParamConverter("post", class="App\Entity\Post")
+	 */
+	public function postAction( PostHandler $handler, Post $post = null ) {
+
+		if ( ! $post ) {
+			return $handler->handle( new Post() );
+		}
+
+		return $handler->handle( $post );
+
+	}
+
+	/**
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @Route("/services", name="back_services")
+	 */
+	public function servicesAction() {
+		return $this->render( 'back/services.html.twig', [
+			'services' => $this->getDoctrine()->getRepository( Post::class )->findServices()
+		] );
+	}
+
+	/**
+	 * @param Post $post
+	 * @Route("/services/{id}", name="back_service")
+	 * @ParamConverter("post", class="App\Entity\Post")
+	 */
+	public function serviceAction( PostHandler $handler, Post $post = null ) {
+
+		if ( ! $post ) {
+			return $handler->handle( new Post(), [ 'category' => 'services' ] );
+		}
+
+		return $handler->handle( $post );
+
+	}
+
+	/**
+	 * @param Post $post
+	 * @Route("/club", name="back_club")
+	 */
+	public function clubAction( PostHandler $handler) {
+
+		$post = $this->getDoctrine()->getRepository(Post::class)->findClub();
+		if ( ! $post ) {
+			return $handler->handle( new Post(), [ 'category' => 'club' ] );
+		}
+
+		return $handler->handle( $post );
+
+	}
+
 
 	/**
 	 * @param Event $event
@@ -119,9 +205,9 @@ class BackController extends Controller {
 	 * @Route("/booking/{id}", name="back_booking")
 	 * @ParamConverter("booking", class="App\Entity\Booking")
 	 */
-	public function bookingAction(AdminBookingHandler $handler, Booking $booking = null ) {
+	public function bookingAction( AdminBookingHandler $handler, Booking $booking = null ) {
 
-		return $handler->handle($booking, ['event' => $booking->getEvent()]);
+		return $handler->handle( $booking, [ 'event' => $booking->getEvent() ] );
 	}
 
 	/**
@@ -147,18 +233,18 @@ class BackController extends Controller {
 	 */
 	public function galleriesAction() {
 
-		return $this->render('back/galleries.html.twig', [
-			'galleries' => $this->getDoctrine()->getRepository(Gallery::class)->findAll()
-		]);
+		return $this->render( 'back/galleries.html.twig', [
+			'galleries' => $this->getDoctrine()->getRepository( Gallery::class )->findAll()
+		] );
 	}
 
 	/**
 	 * @Route("/gallery/{id}", name="back_gallery")
 	 * @ParamConverter("gallery", class="App\Entity\Gallery")
 	 */
-	public function galleryAction(GalleryHandler $handler, Gallery $gallery = null) {
+	public function galleryAction( GalleryHandler $handler, Gallery $gallery = null ) {
 
-		return $handler->handle($gallery);
+		return $handler->handle( $gallery );
 	}
 
 	/**
@@ -166,8 +252,17 @@ class BackController extends Controller {
 	 * @Route("/gallery/{id}/delete", name="back_gallery_delete")
 	 * @ParamConverter("gallery", class="App\Entity\Gallery")
 	 */
-	public function removeGalleryAction(Gallery $gallery) {
+	public function removeGalleryAction( Gallery $gallery ) {
 
+	}
+
+	/**
+	 * @param TeamHandler $handler
+	 * @Route("/team", name="back_team")
+	 */
+	public function teamAction(TeamHandler $handler) {
+
+		return $handler->handle();
 	}
 
 

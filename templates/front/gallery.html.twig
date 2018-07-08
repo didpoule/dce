@@ -28,7 +28,7 @@
                         <i class="fas fa-chevron-left"></i>
                     </div>
 
-                    <ul class="grid col-md-10 clearfix" id="galerie">
+                    <ul class="grid col-md-10 clearfix galerie" id="galerie">
                         {% for picture in pictures %}
                             <li class="col-md-2"><a href="{{ picture.url }}" data-lightbox="roadtrip">
                                     <img src="{{ picture.url }}" alt="{{ picture.alt }}" class="img-fluid galerie-img">

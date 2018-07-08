@@ -57,7 +57,7 @@ class ImageUploadListener implements EventSubscriber {
 			$fileName = $this->uploader->upload( $file );
 			$entity->setUrl( $this->url . '/' . $fileName );
 
-		} else {
+		} elseif(isset($files)) {
 			foreach ( $files as $file ) {
 				$fileName = $this->uploader->upload( $file );
 				$entity->setUrl( $this->url . '/' . $fileName );

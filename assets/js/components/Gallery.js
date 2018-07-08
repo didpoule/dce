@@ -15,8 +15,6 @@ export default class Gallery extends Component {
 
         this.attachEvents();
 
-        console.log(this.nbPages);
-
     }
 
     next(that) {
