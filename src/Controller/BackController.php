@@ -9,6 +9,7 @@ use App\Entity\Event;
 use App\Entity\Gallery;
 use App\Entity\Image;
 use App\Entity\Post;
+use App\Entity\Team;
 use App\Handler\AdminBookingHandler;
 use App\Handler\BookingHandler;
 use App\Handler\EventHandler;
@@ -262,7 +263,8 @@ class BackController extends Controller {
 	 */
 	public function teamAction(TeamHandler $handler) {
 
-		return $handler->handle();
+		$team = $this->getDoctrine()->getRepository(Team::class)->find(1);
+		return $handler->handle($team);
 	}
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Team;
 use App\Entity\Teammate;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TeamType extends AbstractType {
 	public function buildForm( FormBuilderInterface $builder, array $options ) {
 		$builder
+			/*
 			->add( 'teammates', EntityType::class, [
 				'label'         => 'Membres',
 				'class'         => Teammate::class,
@@ -22,7 +24,8 @@ class TeamType extends AbstractType {
 				},
 				'choice_label' => 'name'
 			] )
-			->add( 'newteammate', CollectionType::class, [
+			*/
+			->add( 'teammates', CollectionType::class, [
 				'label'         => false,
 				'entry_type'    => TeammateType::class,
 				'allow_add'     => true,
@@ -37,7 +40,7 @@ class TeamType extends AbstractType {
 
 	public function configureOptions( OptionsResolver $resolver ) {
 		$resolver->setDefaults( [
-			// Configure your form options here
+			'data_class' => Team::class
 		] );
 	}
 }

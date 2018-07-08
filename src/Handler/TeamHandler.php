@@ -40,9 +40,14 @@ class TeamHandler extends Handler
 
     	$team = $this->form->getData();
 
-    	dump($team);
+		$this->em->persist($team);
+
+		$this->em->flush();
+
+		$this->flashBag->add('success', 'Mise à jour efféctuée');
 
 
     	return new RedirectResponse($this->router->generate('back_home'));
     }
+
 }

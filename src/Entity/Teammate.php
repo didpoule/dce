@@ -26,6 +26,11 @@ class Teammate
      */
     private $name;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Team", inversedBy="teammates")
+	 */
+    private $team;
+
     /**
      * @ORM\Column(type="text")
      */
@@ -75,4 +80,20 @@ class Teammate
     public function getTitle() {
     	return $this->name;
     }
+
+	/**
+	 * @return Team
+	 */
+	public function getTeam() {
+		return $this->team;
+	}
+
+	/**
+	 * @param Team $team
+	 */
+	public function setTeam(Team $team ): void {
+		$this->team = $team;
+	}
+
+
 }

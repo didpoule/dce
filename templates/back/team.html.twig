@@ -4,8 +4,11 @@
 {% block adminContent %}
     <h2 class="dce-text-dark dce-bg-light text-center underlined">Modification de la team</h2>
     {{ form_start(form, {'attr': {'id' : 'admin-gallery-form', 'class': 'offset-md-2 col-md-8'}}) }}
-    {{ form_label(form.teammates) }}
-    {{ form_widget(form.teammates) }}
+    {% for teammate in form.teammates %}
+        {{ form_row(teammate.name) }}
+        {{ form_row(teammate.description) }}
+        {{ form_row(teammate.image) }}
+    {% endfor %}
     {{ form_row(form.save) }}
     {{ form_end(form) }}
 {% endblock %}
