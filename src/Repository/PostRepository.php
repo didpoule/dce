@@ -91,4 +91,16 @@ class PostRepository extends ServiceEntityRepository {
 		            ->setParameter( 'category', 'posts' )
 		            ->getSingleScalarResult();
 	}
+
+	public function findLastPost() {
+		return $this->createQueryBuilder( 'p' )
+		            ->addSelect( 'p' )
+		            ->leftJoin( 'p.category', 'c' )
+		            ->where( 'c.name = :category' )
+		            ->setParameter( 'category', 'posts' )
+		            ->setMaxResults( 1 )
+		            ->orderBy( 'p.added', 'DESC' )
+		            ->getQuery()
+		            ->execute()[0];
+	}
 }

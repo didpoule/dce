@@ -25,12 +25,15 @@ class BookingType extends AbstractType {
 		$builder
 			->add( 'name', TextType::class, [ 'label' => 'nom' ] )
 			->add( 'firstname', TextType::class, [ 'label' => 'prénom' ] )
-			->add( 'birthday', DateType::class, [ 'label' => 'date de naissance', 'widget' => 'single_text' ] )
+			->add( 'birthday', DateType::class, [
+				'label'  => 'date de naissance',
+
+			] )
 			->add( 'address', TextType::class, [ 'label' => 'adresse' ] )
 			->add( 'zipcode', NumberType::class, [ 'label' => 'code postal' ] )
 			->add( 'city', TextType::class, [ 'label' => 'ville' ] )
 			->add( 'country', CountryType::class, [
-				'label' => 'pays',
+				'label'      => 'pays',
 				'empty_data' => 'FR'
 			] )
 			->add( 'phone', TextType::class, [ 'label' => 'téléphone' ] )

@@ -13,67 +13,8 @@
 <body>
 <div id="page-content" class="container-fluid p-0">
     <header id="header" class="dce-bg-dark">
-        <menu class="d-flex" id="main-menu">
-            <li class="d-flex flex-column" id="logo-container">
-                <a href="{{ path('front_home') }}">
-                    <img src="{{ absolute_url(asset('build/images/dce.9342630e.png')) }}" alt="logo dce" id="logo">
-                </a>
-            </li>
-            <li class="d-flex flex-column">
-                <a href="{{ path('front_posts') }}">News</a>
-                <div class="menu-underline"></div>
-            </li>
-            <li class="d-flex flex-column">
-                <a href="{{ path('front_team') }}">La team</a>
-                <div class="menu-underline"></div>
-            </li>
-            <li class="d-flex flex-column">
-                <a href="{{ path('front_club') }}">Le club</a>
-                <div class="menu-underline"></div>
-            </li>
-            <li class="dropdown show d-flex flex-column">
-                <a href="{{ path('front_events') }}" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-haspopup="true"
-                   aria-expanded="false" id="workMenu">
-                    Workshops
-                </a>
-                <div class="menu-underline"></div>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="workMenu">
-                    {{ render(controller('App\\Controller\\FrontController::nextWorkshopsAction', {'limit' : 3})) }}
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-item"><a href="{{ path('front_events') }}">Tous voir</a></li>
-
-                </ul>
-            </li>
-            <li class="dropdown show d-flex flex-column">
-                <a href="{{ path("front_galleries") }}" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-haspopup="true"
-                   aria-expanded="false" id="galerieMenu">
-                    Galeries
-                </a>
-                <div class="menu-underline"></div>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="galerieMenu">
-                    {{ render(controller('App\\Controller\\FrontController::lastGalleriesAction', {'limit' : 3})) }}
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-item"><a href="{{ path('front_galleries') }}">Tous voir</a></li>
-                </ul>
-            </li>
-            <li class="dropdown show d-flex flex-column">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-haspopup="true"
-                   aria-expanded="false" id="prestationsMenu">
-                    Prestations
-                </a>
-                <div class="menu-underline"></div>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="prestationskMenu">
-                    {{ render(controller('App\\Controller\\FrontController::servicesAction')) }}
-                </ul>
-            </li>
-            <li class="d-flex flex-column">
-                <a href="{{ path('front_contact') }}">Contact</a>
-                <div class="menu-underline"></div>
-            </li>
-        </menu>
+        {% include 'menu-desktop.html.twig' %}
+        {% include 'menu-mobile.html.twig' %}
     </header>
     {% block flash %}
         {% for flash_message in app.session.flashbag.get('success') %}

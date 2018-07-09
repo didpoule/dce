@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="single-article dce-bg-dark dce-text-light offset-1 col-md-10">
+        <div class="single-article dce-bg-dark dce-text-light offset-md-1 col-md-10 col-12">
             <article>
                 <div class="article-image">
                     {% if event.image is not null %}
@@ -39,11 +39,11 @@
                 <h3 class="dce-text-dark text-center">Formulaire de réservation</h3>
                 {{ form_widget(form) }}
                 {{ form_end(form) }}
-
             </article>
         </div>
-        <div class="articles-navigation offset-2">
-            <a href="{{ path('front_events') }}" class="dce-btn dce-btn-red"><i class="fas fa-chevron-left"></i>Retour à la liste</a>
+        <div class="articles-navigation offset-md-2 offset-1">
+            <a href="{{ path('front_events') }}" class="dce-btn dce-btn-red"><i class="fas fa-chevron-left"></i>Retour à
+                la liste</a>
         </div>
     </section>
 {% endblock %}

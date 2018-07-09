@@ -33,7 +33,10 @@ class FrontController extends Controller {
 	 */
 	public function homeAction() {
 
-		return $this->render( 'front/home.html.twig' );
+		return $this->render( 'front/home.html.twig', [
+			'post' => $this->getDoctrine()->getRepository(Post::class)->findLastPost(),
+			'services' => $this->getDoctrine()->getRepository(Post::class)->findServices()
+		] );
 	}
 
 	/**

@@ -12,12 +12,12 @@
                     <a href="#"><i class="fab fa-twitter-square"></i></a>
                 </div>
                 <div class="section-metas">
-                    <p class="article-date">Publié le {{ post.added|localizeddate('medium', 'none') }}</p>
+                    <p class="article-date">Publié le {{ post.added|localizeddate('long', 'none') }}</p>
                 </div>
             </div>
 
         </div>
-        <div class="single-article dce-bg-dark dce-text-light offset-1 col-md-10">
+        <div class="single-article dce-bg-dark dce-text-light offset-md-1 col-md-10 col-12">
             <article>
                 <div class="article-image">
                     {% if post.image is not null %}
@@ -31,7 +31,7 @@
                 </div>
             </article>
         </div>
-        <div class="articles-navigation offset-3 col-md-6">
+        <div class="articles-navigation offset-md-3 col-md-6 col-12">
             <a href="#" class="dce-btn dce-btn-red"><i class="fas fa-chevron-left"></i>précédent</a>
             <a href="#" class="dce-btn dce-btn-red">suivant <i class="fas fa-chevron-right"></i></a>
         </div>

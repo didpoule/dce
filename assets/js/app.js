@@ -10,6 +10,7 @@ import Gallery from './components/Gallery';
 import Events from './components/Events';
 import Formulas from "./components/Formulas";
 import Teammates from "./components/Teammates";
+import Home from "./components/Home";
 
 class App {
 
@@ -31,6 +32,7 @@ class App {
             form.show();
         });
 
+        let home = new Home();
         let post = new Posts();
         let galleries = new Galleries();
         let gallery = new Gallery();

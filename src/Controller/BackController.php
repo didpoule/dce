@@ -40,8 +40,6 @@ class BackController extends Controller {
 		$em = $this->getDoctrine()->getManager();
 
 		$event = $em->getRepository( Event::class )->findLast();
-		dump($event);
-
 		$contact = $em->getRepository( Contact::class )->countAll();
 
 		$posts = $em->getRepository( Post::class )->countPublished();
