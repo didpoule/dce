@@ -50,13 +50,12 @@ class EventRepository extends ServiceEntityRepository {
 
 	}
 
-	public function countBooking() {
-		return $this->getEntityManager()->createQuery(
-			'SELECT e event, COUNT(b) as count
-			FROM App\Entity\Event e
-			LEFT JOIN e.bookings b
-			ORDER BY e.added DESC'
-		)
-		            ->getSingleResult();
+	public function findLast() {
+		return $this->createQueryBuilder('e')
+			->addSelect('e')
+			->orderBy('e.added', 'DESC')
+			->getQuery()
+			->setMaxResults(1)
+			->execute()[0];
 	}
 }

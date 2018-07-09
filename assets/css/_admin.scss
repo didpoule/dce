@@ -9,8 +9,8 @@
   margin-right: 50px;
 }
 
-.header-container a, #main-menu li a {
-  color: #f8f9fa;
+.header-container a {
+  color: #282828;
 }
 
 #hero-image {
@@ -112,6 +112,10 @@ i {
 
 .dashboard-number span {
   font-weight: 100;
+}
+
+.trumbowyg-editor {
+  background: #ffffff;
 }
 
 @media screen and (max-width: 670px) {

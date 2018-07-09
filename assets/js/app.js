@@ -1,12 +1,15 @@
 import 'bootstrap';
 import 'lightbox2';
-import 'trumbowyg';
+import trumbowyg from 'trumbowyg/dist/trumbowyg';
+import colors from "trumbowyg/dist/plugins/colors/trumbowyg.colors";
+import icons from "trumbowyg/dist/ui/icons.svg"
 
 import Posts from './components/Posts';
 import Galleries from './components/Galleries';
 import Gallery from './components/Gallery';
 import Events from './components/Events';
 import Formulas from "./components/Formulas";
+import Teammates from "./components/Teammates";
 
 class App {
 
@@ -33,6 +36,27 @@ class App {
         let gallery = new Gallery();
         let events = new Events();
         let formulas = new Formulas($("#event_formulas"));
+        let teammates = new Teammates($("#team_teammates"));
+
+        $('#admin-form textarea').trumbowyg({
+            lang: 'fr',
+            imageWidthModalEdit: true,
+            svgPath: icons,
+            btns: [
+                ['fontsize'],
+                ['foreColor', 'backColor'],
+                ['formatting'],
+                ['strong', 'em', 'del'],
+                ['superscript', 'subscript'],
+                ['link'],
+                ['insertImage'],
+                ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                ['unorderedList', 'orderedList'],
+                ['horizontalRule'],
+                ['removeformat'],
+                ['fullscreen']
+            ],
+        });
 
     }
 

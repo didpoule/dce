@@ -17,7 +17,7 @@ class Teammate
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
      */
     private $image;
 

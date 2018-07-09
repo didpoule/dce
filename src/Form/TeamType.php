@@ -30,7 +30,7 @@ class TeamType extends AbstractType {
 				'entry_type'    => TeammateType::class,
 				'allow_add'     => true,
 				'allow_delete'  => true,
-				'entry_options' => [ 'label' => 'Membre' ]
+				'entry_options' => [ 'label' => false ]
 			] )
 			->add( 'save', SubmitType::class, [
 				'label' => 'Sauvegarder',

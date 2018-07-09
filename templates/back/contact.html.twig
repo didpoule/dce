@@ -1,0 +1,30 @@
+{% extends "back_template.html.twig" %}
+
+{% block title %}Contact{% endblock %}
+{% block adminContent %}
+    <h2 class="dce-text-dark dce-bg-light text-center underlined">Contact</h2>
+    {% if message is not null %}
+        <div class="card col-12">
+            <div class="card-header">
+                <h4>Nom: {{ message.name }}</h4>
+                <h4>Prénom: {{ message.firstname }}</h4>
+                {% if message.company is not empty %}<h4>Société: {{ message.company }}</h4>{% endif %}
+                <h4>Email: {{ message.email }}</h4>
+                <h4>Date: {{ message.added|localizeddate('long', 'none') }}</h4>
+            </div>
+            <div class="card-body">
+                <h4>Objet: {{ message.subject }}</h4>
+
+                <p>{{ message.content }}</p>
+            </div>
+            <div class="card-footer">
+                <a class="dce-btn dce-btn-red"
+                   href="mailto:{{ message.email }}?subject=Re:%20{{ message.subject|url_encode }}&body=%0D%0A%0D%0AMessage%20précédent:%0D%0A%0D%0A{{ message.content }}">
+                    Répondre
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <p>Rien à afficher.</p>
+    {% endif %}
+{% endblock %}

@@ -8,46 +8,47 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use TBoileau\FormHandlerBundle\Handler;
 
-class TeamHandler extends Handler
-{
+class TeamHandler extends Handler {
 	private $em;
 
 	public function __construct( EntityManagerInterface $em ) {
 		$this->em = $em;
 	}
 
-    /**
-     * @return string
-     */
-    public static function getFormType(): string
-    {
-        return TeamType::class;
-    }
+	/**
+	 * @return string
+	 */
+	public static function getFormType(): string {
+		return TeamType::class;
+	}
 
-    /**
-     * @return string
-     */
-    public function getView(): string
-    {
-        return "back/team.html.twig";
-    }
+	/**
+	 * @return string
+	 */
+	public function getView(): string {
+		return "back/team.html.twig";
+	}
 
-    /**
-     * @return Response
-     */
-    public function onSuccess(): Response
-    {
+	/**
+	 * @return Response
+	 */
+	public function onSuccess(): Response {
 
-    	$team = $this->form->getData();
+		$team = $this->form->getData();
 
-		$this->em->persist($team);
+		foreach ( $team->getTeammates() as $teammate ) {
+			if ( ! $teammate->getImage()->getAlt() ) {
+				$teammate->getImage()->setAlt( $teammate->getName() );
+			}
+		}
+
+		$this->em->persist( $team );
 
 		$this->em->flush();
 
-		$this->flashBag->add('success', 'Mise à jour efféctuée');
+		$this->flashBag->add( 'success', 'Mise à jour effectuée' );
 
 
-    	return new RedirectResponse($this->router->generate('back_home'));
-    }
-
+		return new RedirectResponse( $this->router->generate( 'back_home' ) );
+	}
 }

@@ -14,9 +14,10 @@
 <div id="page-content" class="container-fluid p-0">
     <header id="header" class="dce-bg-dark">
         <menu class="d-flex" id="main-menu">
-            <li class="d-flex flex-column">
-                <a href="{{ path('front_home') }}">Accueil</a>
-                <div class="menu-underline"></div>
+            <li class="d-flex flex-column" id="logo-container">
+                <a href="{{ path('front_home') }}">
+                    <img src="{{ absolute_url(asset('build/images/dce.9342630e.png')) }}" alt="logo dce" id="logo">
+                </a>
             </li>
             <li class="d-flex flex-column">
                 <a href="{{ path('front_posts') }}">News</a>
@@ -29,11 +30,6 @@
             <li class="d-flex flex-column">
                 <a href="{{ path('front_club') }}">Le club</a>
                 <div class="menu-underline"></div>
-            </li>
-            <li class="d-flex flex-column" id="logo-container">
-                <a href="{{ path('front_home') }}">
-                    <img src="{{ absolute_url(asset('build/images/dce.9342630e.png')) }}" alt="logo dce" id="logo">
-                </a>
             </li>
             <li class="dropdown show d-flex flex-column">
                 <a href="{{ path('front_events') }}" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -50,7 +46,7 @@
                 </ul>
             </li>
             <li class="dropdown show d-flex flex-column">
-                <a href="/galeries.html" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                <a href="{{ path("front_galleries") }}" class="dropdown-toggle" data-toggle="dropdown" role="button"
                    aria-haspopup="true"
                    aria-expanded="false" id="galerieMenu">
                     Galeries

@@ -27,7 +27,7 @@
 {% block pageContent %}
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-3 d-none d-md-block sidebar">
+            <nav class="col-md-3 col-lg-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <h5 class="sidebar-heading d-flex align-items-center mt-4 mb-1 text-muted">
                         <a href="{{ path('back_home') }}" class="nav-link d-flex"><i class="fas fa-tachometer-alt"></i>Tableau
@@ -114,14 +114,14 @@
                     </h6>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/comments">
+                            <a class="nav-link" href="{{ path('back_contacts') }}">
                                 Consulter les messages
                             </a>
                         </li>
                     </ul>
                 </div>
             </nav>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-9 pt-3 px-4">
+            <main role="main" class="col-md-9 ml-sm-auto offset-lg-1 col-lg-10 pt-3 px-4">
                 {% block adminContent %}{% endblock %}
             </main>
         </div>
@@ -131,30 +131,9 @@
 
 {% endblock %}
     {% block scripts %}
-        <script src="/assets/trumbowyg/dist/trumbowyg.min.js"></script>
-        <script src="/assets/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js"></script>
-        <script src="/assets/trumbowyg/dist/plugins/fontsize/trumbowyg.fontsize.min.js"></script>
-        <script src="/assets/trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.css"></script>
         <script>
             // $ = jQuery regardless of what it means
             // outside this DOM ready function
-            $('#content').trumbowyg({
-                lang: 'fr',
-                imageWidthModalEdit: true,
-                btns: [
-                    ['fontsize'],
-                    ['foreColor', 'backColor'],
-                    ['formatting'],
-                    ['strong', 'em', 'del'],
-                    ['superscript', 'subscript'],
-                    ['link'],
-                    ['insertImage'],
-                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-                    ['unorderedList', 'orderedList'],
-                    ['horizontalRule'],
-                    ['removeformat'],
-                    ['fullscreen']
-                ],
-            });
+
         </script>
     {% endblock %}

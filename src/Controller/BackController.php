@@ -39,7 +39,8 @@ class BackController extends Controller {
 
 		$em = $this->getDoctrine()->getManager();
 
-		$event = $em->getRepository( Event::class )->countBooking();
+		$event = $em->getRepository( Event::class )->findLast();
+		dump($event);
 
 		$contact = $em->getRepository( Contact::class )->countAll();
 
@@ -137,9 +138,9 @@ class BackController extends Controller {
 	 * @param Post $post
 	 * @Route("/club", name="back_club")
 	 */
-	public function clubAction( PostHandler $handler) {
+	public function clubAction( PostHandler $handler ) {
 
-		$post = $this->getDoctrine()->getRepository(Post::class)->findClub();
+		$post = $this->getDoctrine()->getRepository( Post::class )->findClub();
 		if ( ! $post ) {
 			return $handler->handle( new Post(), [ 'category' => 'club' ] );
 		}
@@ -261,11 +262,52 @@ class BackController extends Controller {
 	 * @param TeamHandler $handler
 	 * @Route("/team", name="back_team")
 	 */
-	public function teamAction(TeamHandler $handler) {
+	public function teamAction( TeamHandler $handler ) {
 
-		$team = $this->getDoctrine()->getRepository(Team::class)->find(1);
-		return $handler->handle($team);
+		$team = $this->getDoctrine()->getRepository( Team::class )->find( 1 );
+
+		return $handler->handle( $team );
 	}
 
+	/**
+	 * @Route("/contacts", name="back_contacts")
+	 */
+	public function contactsAction() {
 
+		return $this->render( 'back/contacts.html.twig', [
+			'messages' => $this->getDoctrine()->getRepository( Contact::class )->findAll()
+		] );
+	}
+
+	/**
+	 * @param Contact $contact
+	 * @Route("/contact/{id}", name="back_contact")
+	 * @ParamConverter("contact", class="App\Entity\Contact")
+	 */
+	public function contactAction( Contact $contact ) {
+
+		return $this->render( 'back/contact.html.twig', [
+			'message' => $contact
+		] );
+
+	}
+
+	/**
+	 * @param Contact $contact
+	 * @Route("/contact/{id}/delete", name="back_contact_delete")
+	 * @ParamConverter("contact", class="App\Entity\Contact")
+	 * @return RedirectResponse
+	 */
+	public function removeContactAction(Contact $contact) {
+
+		if ( $contact ) {
+			$em = $this->getDoctrine()->getManager();
+			$em->remove( $contact );
+			$em->flush();
+
+			$this->addFlash( 'success', 'Le message a bien été supprimé.' );
+		}
+
+		return new RedirectResponse( $this->generateUrl( 'back_contacts' ) );
+	}
 }

@@ -3,12 +3,14 @@
 {% block title %}Team DCE{% endblock %}
 {% block adminContent %}
     <h2 class="dce-text-dark dce-bg-light text-center underlined">Modification de la team</h2>
-    {{ form_start(form, {'attr': {'id' : 'admin-gallery-form', 'class': 'offset-md-2 col-md-8'}}) }}
+    {{ form_start(form, {'attr': {'id' : 'admin-form', 'class': 'offset-md-2 col-md-8'}}) }}
     {% for teammate in form.teammates %}
         {{ form_row(teammate.name) }}
         {{ form_row(teammate.description) }}
+        <img src="{{ teammate.vars.value.image.url }}" alt="{{ teammate.vars.value.image.alt }}">
         {{ form_row(teammate.image) }}
     {% endfor %}
+    {{ form_widget(form.teammates) }}
     {{ form_row(form.save) }}
     {{ form_end(form) }}
 {% endblock %}

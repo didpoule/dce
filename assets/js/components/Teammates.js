@@ -1,6 +1,6 @@
 import Component from "../Component";
 
-export default class Formulas extends Component {
+export default class Teammates extends Component {
 
     constructor(e) {
         super(e);
@@ -11,7 +11,7 @@ export default class Formulas extends Component {
 
         this.e.data('index', this.e.find(':input').length);
         this.addBtn.on('click', (e) => {
-            this.addFormula(this.e, this.newLink);
+            this.addTeammate(this.e, this.newLink);
         });
 
 
@@ -28,7 +28,7 @@ export default class Formulas extends Component {
         })
     }
 
-    addFormula(e, newLink) {
+    addTeammate(e, newLink) {
 
         let prototype = e.data('prototype');
 
@@ -47,4 +47,5 @@ export default class Formulas extends Component {
 
         this.addDeleteLink(newFormDiv);
     }
+
 }

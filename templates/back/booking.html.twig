@@ -4,7 +4,7 @@
 {% block adminContent %}
     <h2 class="dce-text-dark dce-bg-light text-center underlined">Édition d'une réservation</h2>
     <h3>Workshop: {{ event.title }}</h3>
-    {{ form_start(form, {'attr': {'id' : 'admin-gallery-form', 'class': 'offset-md-2 col-md-8'}}) }}
+    {{ form_start(form, {'attr': {'id' : 'admin-form', 'class': 'offset-md-2 col-md-8'}}) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
 {% endblock %}
