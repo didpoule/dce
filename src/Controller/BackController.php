@@ -39,7 +39,7 @@ class BackController extends Controller {
 
 		$em = $this->getDoctrine()->getManager();
 
-		$event = $em->getRepository( Event::class )->findLast();
+		$event   = $em->getRepository( Event::class )->findLast();
 		$contact = $em->getRepository( Contact::class )->countAll();
 
 		$posts = $em->getRepository( Post::class )->countPublished();
@@ -86,7 +86,6 @@ class BackController extends Controller {
 	 */
 	public function eventsAction() {
 
-
 		return $this->render( 'back/events.html.twig', [
 			'events' => $this->getDoctrine()->getRepository( Event::class )->findAll()
 		] );
@@ -99,11 +98,7 @@ class BackController extends Controller {
 	 */
 	public function postAction( PostHandler $handler, Post $post = null ) {
 
-		if ( ! $post ) {
-			return $handler->handle( new Post() );
-		}
-
-		return $handler->handle( $post );
+		return $handler->handle( $post ?? new Post() );
 
 	}
 
@@ -112,6 +107,7 @@ class BackController extends Controller {
 	 * @Route("/services", name="back_services")
 	 */
 	public function servicesAction() {
+
 		return $this->render( 'back/services.html.twig', [
 			'services' => $this->getDoctrine()->getRepository( Post::class )->findServices()
 		] );
@@ -124,11 +120,7 @@ class BackController extends Controller {
 	 */
 	public function serviceAction( PostHandler $handler, Post $post = null ) {
 
-		if ( ! $post ) {
-			return $handler->handle( new Post(), [ 'category' => 'services' ] );
-		}
-
-		return $handler->handle( $post );
+		return $handler->handle( $post ?? new Post(), [ 'category' => 'services' ] );
 
 	}
 
@@ -155,11 +147,7 @@ class BackController extends Controller {
 	 */
 	public function eventAction( EventHandler $handler, Event $event = null ) {
 
-		if ( ! $event ) {
-			return $handler->handle( new Event() );
-		}
-
-		return $handler->handle( $event );
+		return $handler->handle( $event ?? new Event() );
 
 	}
 
@@ -254,6 +242,16 @@ class BackController extends Controller {
 	 */
 	public function removeGalleryAction( Gallery $gallery ) {
 
+		if ( $gallery ) {
+			$em = $this->getDoctrine()->getManager();
+			$em->remove( $gallery );
+			$em->flush();
+
+			$this->addFlash( 'success', 'La galerie a bien été supprimée.' );
+		}
+
+		return new RedirectResponse( $this->generateUrl( 'back_galleries' ) );
+
 	}
 
 	/**
@@ -294,9 +292,10 @@ class BackController extends Controller {
 	 * @param Contact $contact
 	 * @Route("/contact/{id}/delete", name="back_contact_delete")
 	 * @ParamConverter("contact", class="App\Entity\Contact")
+	 *
 	 * @return RedirectResponse
 	 */
-	public function removeContactAction(Contact $contact) {
+	public function removeContactAction( Contact $contact ) {
 
 		if ( $contact ) {
 			$em = $this->getDoctrine()->getManager();

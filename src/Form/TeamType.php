@@ -15,16 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TeamType extends AbstractType {
 	public function buildForm( FormBuilderInterface $builder, array $options ) {
 		$builder
-			/*
-			->add( 'teammates', EntityType::class, [
-				'label'         => 'Membres',
-				'class'         => Teammate::class,
-				'query_builder' => function ( EntityRepository $er ) {
-					return $er->createQueryBuilder( 't' );
-				},
-				'choice_label' => 'name'
-			] )
-			*/
 			->add( 'teammates', CollectionType::class, [
 				'label'         => false,
 				'entry_type'    => TeammateType::class,

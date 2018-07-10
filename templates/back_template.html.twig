@@ -27,7 +27,7 @@
 {% block pageContent %}
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-3 col-lg-2 d-none d-md-block sidebar">
+            <nav class="col-md-3 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                     <h5 class="sidebar-heading d-flex align-items-center mt-4 mb-1 text-muted">
                         <a href="{{ path('back_home') }}" class="nav-link d-flex"><i class="fas fa-tachometer-alt"></i>Tableau
@@ -121,7 +121,7 @@
                     </ul>
                 </div>
             </nav>
-            <main role="main" class="col-md-9 ml-sm-auto offset-lg-1 col-lg-10 pt-3 px-4">
+            <main role="main" class="col-md-9 ml-sm-auto offset-lg-1 pt-3 px-4">
                 {% block adminContent %}{% endblock %}
             </main>
         </div>

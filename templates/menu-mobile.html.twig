@@ -1,16 +1,16 @@
 <nav class="navbar navbar-light light-blue lighten-4 d-md-none d-block">
     <ul class="d-flex justify-content-around">
-        <li id="logo-container" class="dropdown show">
+        <li class="dropdown show logo-container">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false" id="hamburger-menu">
-                <img src="{{ absolute_url(asset('build/images/dce.9342630e.png')) }}" alt="logo dce" id="logo">
+                <img src="{{ absolute_url(asset('build/images/dce.9342630e.png')) }}" alt="logo dce" class="logo">
             </a>
             <ul class="dropdown-menu " role="menu" aria-labelledby="hamburger-menu" id="menu-mobile">
                 <li class="dropdown-item"><a href="{{ path('front_home') }}">Accueil</a></li>
                 <li class="dropdown-item"><a href="{{ path('front_posts') }}">News</a></li>
                 <li class="dropdown-item"><a href="{{ path('front_team') }}">Team</a></li>
                 <li class="dropdown-item"><a href="{{ path('front_club') }}">Le club</a></li>
-                <li class="dropdown-item"><a href="{{ path('front_events') }}">Workshops</a></li>
+                <li class="dropdown-item"><a href="{{ path('front_events') }}">Prochains workshops</a></li>
                 <li class="dropdown-item"><a href="{{ path('front_galleries') }}">Galeries</a></li>
                 {{ render(controller('App\\Controller\\FrontController::servicesAction')) }}
                 <li class="dropdown-item"><a href="{{ path('front_contact') }}">Contact</a></li>

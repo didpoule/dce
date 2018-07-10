@@ -8,7 +8,7 @@ namespace App\Service;
 class Mailer {
 
 	/**
-	 * @var Swift_Mailer
+	 * @var \Swift_Mailer
 	 */
 	private $mailer;
 

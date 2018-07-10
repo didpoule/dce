@@ -15,6 +15,16 @@ import Home from "./components/Home";
 class App {
 
     constructor() {
+        this.home = new Home();
+        this.post = new Posts();
+        this.galleries = new Galleries();
+        this.gallery = new Gallery();
+        this.events = new Events();
+        this.formulas = new Formulas($("#event_formulas"));
+        this.teammates = new Teammates($("#team_teammates"));
+    }
+
+    run() {
         let form = $('.dce-form');
         let pictures = $(".galerie img");
         pictures.each(function () {
@@ -32,15 +42,9 @@ class App {
             form.show();
         });
 
-        let home = new Home();
-        let post = new Posts();
-        let galleries = new Galleries();
-        let gallery = new Gallery();
-        let events = new Events();
-        let formulas = new Formulas($("#event_formulas"));
-        let teammates = new Teammates($("#team_teammates"));
 
-        $('#admin-form textarea').trumbowyg({
+
+        $('.admin-form textarea').trumbowyg({
             lang: 'fr',
             imageWidthModalEdit: true,
             svgPath: icons,
@@ -59,11 +63,6 @@ class App {
                 ['fullscreen']
             ],
         });
-
-    }
-
-    run() {
-
     }
 }
 

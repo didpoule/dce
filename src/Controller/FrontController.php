@@ -115,7 +115,7 @@ class FrontController extends Controller {
 		return $this->render( 'front/events.html.twig', [
 			'events' => $this->getDoctrine()->getRepository( Event::class )->findLasts( MAX_PER_PAGE ),
 			'count'  => $count,
-			'pages'  => dump( intval( ceil( $count / MAX_PER_PAGE ) ) )
+			'pages'  =>  intval( ceil( $count / MAX_PER_PAGE ) )
 		] );
 	}
 

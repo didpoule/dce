@@ -3,11 +3,11 @@
 {% block title %}Édition d'un article{% endblock %}
 {% block adminContent %}
     <h2 class="dce-text-dark dce-bg-light text-center underlined">Édition d'un article</h2>
-    {{ form_start(form, {'attr': {'id' : 'admin-form', 'class': 'offset-md-1 col-md-10 offset-lg-2 col-lg-8'}}) }}
+    {{ form_start(form, {'attr': {'class': 'offset-md-1 col-md-10 offset-lg-2 col-lg-8 admin-form'}}) }}
     {{ form_row(form.title) }}
     {{ form_row(form.image) }}
     {{ form_row(form.published) }}
     {{ form_row(form.content) }}
-    {{ form_row(form.save) }}
+    {{ form_row(form.save, {'attr': {'class': 'col-6 mx-auto dce-btn dce-btn-red' }}) }}
     {{ form_end(form) }}
 {% endblock %}

@@ -51,7 +51,6 @@ h2 {
   margin-bottom: 50px;
 }
 
-
 tr {
   text-align: center;
 }
@@ -81,7 +80,7 @@ i {
 }
 
 .card {
-  border-radius: 25px;
+  border-radius: 15px;
   color: #eaeaea;
 
   cursor: pointer;
@@ -116,6 +115,26 @@ i {
 
 .trumbowyg-editor {
   background: #ffffff;
+}
+
+.admin-form {
+  background: #282828;
+  padding: 15px;
+  border-radius: 20px;
+  color: #eaeaea;
+  margin-bottom: 50px;
+}
+
+.admin-form legend {
+  color: #eaeaea;
+}
+
+.admin-form fieldset .form-group {
+  margin-left: 0;
+}
+
+.admin-form .custom-file-label::after{
+  content: 'Parcourir';
 }
 
 @media screen and (max-width: 670px) {

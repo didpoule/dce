@@ -4,7 +4,7 @@ export default class Formulas extends Component {
 
     constructor(e) {
         super(e);
-        this.addBtn = $('<button type="button" class="add_tag_link dce-btn dce-btn-red">+</button>');
+        this.addBtn = $('<button type="button" class="add_tag_link btn btn-sm btn-primary col-md-2 col-12 offset-md-5">Ajouter</button>');
         this.newLink = $('<div></div>');
         this.newLink.append(this.addBtn);
         this.e.append(this.newLink);
@@ -18,7 +18,7 @@ export default class Formulas extends Component {
     }
 
     addDeleteLink(element) {
-        let removeBtn = $('<button type="button" class="remove_tag_link dce-btn dce-btn-red">-</button>');
+        let removeBtn = $('<button type="button" class="remove_tag_link btn btn-sm btn-danger col-md-2 col-12 offset-md-5">Supprimer</button>');
 
         console.log(element);
         element.append(removeBtn);

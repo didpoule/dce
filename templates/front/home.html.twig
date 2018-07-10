@@ -117,11 +117,12 @@
                     {% for service in services %}
                         <div class="prestation dce-text-light col-12 col-md" data-bg="{{ service.image.url }}">
                             <div class="prestation-text text-center">
+                                <div class="background-image"></div>
                                 <a href="{{ path('front_service', {'slug': service.slug}) }}">
                                     <span class="dce-text-light">{{ service.title }}</span>
                                 </a>
                                 <p>
-                                    {{ service.content| raw }}
+                                    {#{{ service.content| raw }}#}
                                 </p>
                             </div>
                         </div>

@@ -51,7 +51,7 @@ class GalleryType extends AbstractType {
 			->add( 'published', CheckboxType::class, [ 'label' => 'Publier', 'required' => false ] )
 			->add( 'save', SubmitType::class, [
 				'label' => 'Envoyer',
-				'attr'  => array( 'class' => 'dce-btn dce-btn-red' )
+				'attr'  => array( 'class' => 'col-6 mx-auto dce-btn dce-btn-red' )
 			] );
 	}
 

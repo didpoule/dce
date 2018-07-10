@@ -10,8 +10,9 @@ export default class Home {
 
         $(this.services).each((key , value) => {
             let bg = $(value).data('bg');
-            $(value).children('.prestation-text').css('background', 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(' + bg + ') no-repeat center');
-            $(value).children('.prestation-text').css('background-size', 'cover');
+            console.log(value);
+            $(value).children('.prestation-text').children('.background-image').css('background', 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(' + bg + ') no-repeat center');
+            $(value).children('.prestation-text').children('.background-image').css('background-size', 'cover');
         });
 
         let postImg = $(this.post ).children('.section-img');
