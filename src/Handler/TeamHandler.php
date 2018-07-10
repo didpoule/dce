@@ -2,6 +2,7 @@
 
 namespace App\Handler;
 
+use App\Entity\Image;
 use App\Form\TeamType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -37,7 +38,10 @@ class TeamHandler extends Handler {
 		$team = $this->form->getData();
 
 		foreach ( $team->getTeammates() as $teammate ) {
-			if ( ! $teammate->getImage()->getAlt() ) {
+			if ( $teammate->getImage() && $file = $teammate->getImage()->getFile() ) {
+				$image = new Image();
+				$teammate->setImage( $image );
+				$image->setFile( $file );
 				$teammate->getImage()->setAlt( $teammate->getName() );
 			}
 		}
