@@ -240,6 +240,15 @@ h2 {
   margin-bottom: 10px;
 }
 
+h2 a {
+  color: #eaeaea;
+  text-decoration: none;
+}
+
+h2 a:hover {
+  text-decoration: none;
+}
+
 .underlined::after {
   content: '';
   width: 100%;
