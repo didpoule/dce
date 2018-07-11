@@ -12,7 +12,7 @@ export default class Home {
         $(this.services).each((key, value) => {
             let bg = $(value).data('bg');
             $(value).children('.prestation-text').children('.background-image').css('background', 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(' + bg + ') no-repeat center');
-            $(value).children('.prestation-text').children('.background-image').css('background-size', 'cover');
+            $(value).children('.prestation-text').children('.background-image').css('background-size', 'contain');
         });
 
         let eventImg = $(this.event).children('.section-img');
@@ -24,6 +24,6 @@ export default class Home {
         let postImg = $(this.post).children('.section-img');
 
         postImg.css('background', 'url(' + postImg.data('bg') + ') no-repeat center');
-        postImg.css('background-size', 'cover');
+        postImg.css('background-size', 'contain');
     }
 }
