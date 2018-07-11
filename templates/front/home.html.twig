@@ -15,78 +15,18 @@
 
     <section class="dce-bg-dark">
         <div class="section-header">
-            <h2 class="dce-text-light dce-bg-dark underlined underlined-light">
-                {% if post is not null %}
-                <a href="{{ path('front_post', {'slug': post.slug}) }}">{{ post.title }}</a>
+            <h2 class="dce-text-light dce-bg-dark underlined underlined-light text-center">
+                {% if event is not null %}
+                    <a href="{{ path('front_event', {'slug': event.slug}) }}">Prochain Workshop</a>
                 {% else %}
                     Présentation
                 {% endif %}
             </h2>
         </div>
         <div class="row">
-            <div class="section-content col-12 featured-post">
-                <div class="section-text dce-text-light col-12 col-md-6">
-                    {% if post is not null %}
-                        {{ post.content|raw }}
-                    {% else %}
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris urna odio, convallis sit
-                            amet
-                            ullamcorper placerat, bibendum congue mauris. Nunc sed libero purus. Vestibulum ante ipsum
-                            primis in
-                            faucibus orci luctus et ultrices posuere cubilia Curae; Morbi purus tortor, fringilla nec
-                            ipsum
-                            vel,
-                            aliquet ornare orci. Proin dapibus ultricies dictum. Praesent vitae laoreet velit. In eu
-                            risus
-                            augue.
-                            Mauris elementum nisl ut lacus ultricies vestibulum. Cras lobortis felis vel neque ultrices
-                            porta.
-                            Sed
-                            vehicula tincidunt orci. Donec facilisis metus eu tellus aliquam, vitae tempor dui
-                            ultricies.
-                            <br>
-                            Aenean pulvinar ultricies nibh non imperdiet. Curabitur at sollicitudin urna. Donec eget
-                            elit
-                            eros.
-                            Donec facilisis dui tincidunt, rhoncus turpis in, eleifend tortor. In tempus tempus purus,
-                            vel
-                            aliquet
-                            neque condimentum non. Donec lacus dolor, convallis varius tellus at, placerat tincidunt
-                            metus.
-                            Aliquam
-                            bibendum ornare consequat. Cras a varius turpis.
-                            Aenean tristique pellentesque leo ut aliquet. Etiam hendrerit sagittis egestas. Aenean
-                            cursus
-                            non
-                            magna in accumsan. In metus nibh, tempor sed massa eget, sodales volutpat augue. Sed
-                            condimentum
-                            mauris quis sodales pellentesque. Quisque ac orci erat. Mauris placerat, arcu a imperdiet
-                            elementum,
-                            nibh justo venenatis magna, id tincidunt massa turpis in neque.
-                            <br>
-                            Proin quis sapien sit amet augue dictum luctus a sed tortor. Morbi malesuada rhoncus nisi
-                            pharetra
-                            consequat. Curabitur id odio non tellus scelerisque molestie. Curabitur ac ullamcorper
-                            velit.
-                            Sed
-                            fermentum tristique turpis maximus luctus. Morbi eget mauris ligula. Ut ornare nisi a
-                            blandit
-                            aliquet. Donec malesuada, eros eu interdum sollicitudin, sapien felis placerat justo, id
-                            consectetur
-                            odio libero ut massa. Integer quis ligula ac purus malesuada blandit. Donec semper suscipit
-                            nisl
-                            quis tempus. Suspendisse vel ex in lorem convallis consequat. Etiam non vestibulum quam.
-                            Maecenas
-                            eget elit quam. Quisque convallis ullamcorper eros, et consequat erat pellentesque
-                            ultricies.
-                            Nam
-                            laoreet magna ipsum, ut molestie massa pretium ac.
-                        </p>
-                    {% endif %}
-                </div>
-                <div class="section-img col-12 col-md-6 " data-bg="{{ post.image.url }}">
-                    <img src="{{ post.image.url }}" alt="{{ post.image.alt }}">
+            <div class="section-content col-12 featured-event">
+                <div class="section-img col-12 col-md-6 offset-md-3" data-bg="{{ event.image.url }}">
+                    <img src="{{ event.image.url }}" alt="{{ event.image.alt }}">
                 </div>
             </div>
         </div>
@@ -198,26 +138,18 @@
     </section>
     <section class="dce-bg-light dce-text-dark">
         <div class="section-header">
-            <h2 class="dce-bg-light underlined">Contact</h2>
+            <h2 class="dce-bg-light underlined">
+                <a class="dce-text-dark" href="{{ path('front_post', {'slug': post.slug}) }}">{{ post.title }}</a>
+            </h2>
         </div>
         <div class="row">
-            <div class="section-content">
-                <div class="section-img col-12 col-md-6">
-                    <img src="#" alt="placeholder">
+            <div class="section-content featured-post">
+                <div class="section-img col-12 col-md-6 d-none d-md-block" data-bg="{{ post.image.url }}">
+                    <img src="{{ post.image.url }}" alt="{{ post.image.alt }}">
                 </div>
                 <div class="section-text col-12 col-md-5 dce-text-dark">
-                    <p class="text-left">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris urna odio, convallis sit amet
-                        ullamcorper placerat, bibendum congue mauris. Nunc sed libero purus. Vestibulum ante ipsum
-                        primis in
-                        faucibus orci luctus et ultrices posuere cubilia Curae; Morbi purus tortor, fringilla nec ipsum
-                        vel,
-                        aliquet ornare orci. Proin dapibus ultricies dictum. Praesent vitae laoreet velit. In eu risus
-                        augue.
-                        Mauris elementum nisl ut lacus ultricies vestibulum. Cras lobortis felis vel neque ultrices
-                        porta.
-                        Sed
-                        vehicula tincidunt orci. Donec facilisis metus eu tellus aliquam, vitae tempor dui ultricies.
+                    <p class="">
+                        {{ post.content|raw }}
                     </p>
                 </div>
             </div>

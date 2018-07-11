@@ -12,7 +12,7 @@
                 {% for gallery in galleries %}
                     {% if gallery.extract is not empty %}
                         <article class="dce-bg-dark dce-text-light d-flex">
-                            <div class="article-tumbnail col-md-4 d-none d-md-block">
+                            <div class="article-tumbnail col-4">
                                 {% if gallery.event.image is not null %}
                                     <img src="{{ gallery.event.image.url }}" alt="{{ gallery.event.image.alt }}"
                                          class="img-fluid img-responsive"/>
@@ -25,7 +25,7 @@
                                         Date: {{ gallery.event.added|localizeddate('medium', 'none') }}</p>
                                     <p class="article-date">Lieu: {{ gallery.event.place }}</p>
                                 </div>
-                                <div class="grid galerie">
+                                <div class="grid galerie d-none d-md-flex">
                                     {% for picture in gallery.extract %}
                                         <figure class="col-12 col-md-2"><img src="{{ picture.url }}"
                                                                              alt="{{ picture.alt }}"

@@ -20,8 +20,8 @@
                         <h3>{{ event.title }}</h3>
                         <p class="article-date">Date: {{ event.added|localizeddate('medium', 'none') }}</p>
                         <p class="article-date">Lieu: {{ event.place }}</p>
-                        <p class="article-text">
-                            {{ event.content|truncate(450, true) }}
+                        <p class="article-text d-none d-md-block">
+                            {{ event.content|striptags|striptags|slice(0, 200) ~ '...' }}
                         </p>
                         <div class="d-flex mx-auto">
                             <a href="{{ path('front_event', {"slug": event.slug}) }}" class="dce-btn dce-btn-red">Plus

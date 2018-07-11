@@ -43,6 +43,11 @@ input:focus, textarea:focus {
 
 }
 
+.form-inline {
+  justify-content: space-between;
+  width: 50%;
+}
+
 a:hover, i:hover {
   text-decoration: none !important;
   transform: perspective(500px) translate3d(0, -5px, 50px) !important;
@@ -445,6 +450,11 @@ section {
 
 .prestation p:first-child {
   padding: 20px;
+}
+
+
+.featured-post p {
+  text-align: left;
 }
 
 /* Pied de page */

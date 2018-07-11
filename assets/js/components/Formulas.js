@@ -8,10 +8,17 @@ export default class Formulas extends Component {
         this.newLink = $('<div></div>');
         this.newLink.append(this.addBtn);
         this.e.append(this.newLink);
+        this.formulas = $(".event-formula");
+        this.newLink.before(this.formulas.last());
+
 
         this.e.data('index', this.e.find(':input').length);
         this.addBtn.on('click', (e) => {
             this.addFormula(this.e, this.newLink);
+        });
+
+        this.formulas.each((index, element) => {
+            this.addDeleteLink($(element));
         });
 
 
@@ -20,7 +27,6 @@ export default class Formulas extends Component {
     addDeleteLink(element) {
         let removeBtn = $('<button type="button" class="remove_tag_link btn btn-sm btn-danger col-md-2 col-12 offset-md-5">Supprimer</button>');
 
-        console.log(element);
         element.append(removeBtn);
 
         removeBtn.on('click', (e) => {

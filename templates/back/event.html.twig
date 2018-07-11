@@ -8,7 +8,18 @@
     {{ form_row(form.image) }}
     {{ form_row(form.added) }}
     {{ form_row(form.place) }}
-    {{ form_row(form.formulas) }}
+    <div class="form-group">
+        {{ form_label(form.formulas) }}
+    </div>
+    {% for formula in form.formulas %}
+        <div class="event-formula form-group">
+            {{ form_row(formula.name) }}
+            {{ form_row(formula.price) }}
+        </div>
+    {% endfor %}
+    <fieldset class="form-group">
+        <div id="event_formulas" data-prototype="{{ form_widget(form.formulas.vars.prototype)|e('html_attr') }}"></div>
+    </fieldset>
     {{ form_row(form.published) }}
     {{ form_row(form.content) }}
     {{ form_row(form.save, {'attr': {'class': 'col-6 mx-auto dce-btn dce-btn-red' }}) }}

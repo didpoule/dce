@@ -8,10 +8,17 @@ export default class Teammates extends Component {
         this.newLink = $('<div></div>');
         this.newLink.append(this.addBtn);
         this.e.append(this.newLink);
+        this.teammates = $(".team-member");
+        this.newLink.before(this.teammates.last());
 
         this.e.data('index', this.e.find(':input').length);
-        this.addBtn.on('click', (e) => {
+        this.addBtn.on('click', () => {
             this.addTeammate(this.e, this.newLink);
+        });
+
+
+        this.teammates.each((index, element) => {
+            this.addDeleteLink($(element));
         });
 
 
@@ -20,8 +27,7 @@ export default class Teammates extends Component {
     addDeleteLink(element) {
         let removeBtn = $('<button type="button" class="remove_tag_link btn btn-sm btn-danger col-md-2 col-12 offset-md-5">Supprimer</button>');
 
-        console.log(element);
-        element.append(removeBtn);
+        element.append($(removeBtn));
 
         removeBtn.on('click', (e) => {
             element.remove();

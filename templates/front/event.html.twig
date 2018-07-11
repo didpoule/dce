@@ -26,7 +26,7 @@
                 </div>
                 <div class="article-content col-12">
                     <p class="article-text">
-                        {{ event.content| raw }}
+                        {{ event.content|striptags|striptags|slice(0, 200) ~ '...' }}
                     </p>
                     <iframe
                             style="border:0"

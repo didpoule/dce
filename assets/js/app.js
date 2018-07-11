@@ -11,6 +11,8 @@ import Events from './components/Events';
 import Formulas from "./components/Formulas";
 import Teammates from "./components/Teammates";
 import Home from "./components/Home";
+import Booking from "./components/Booking";
+import Contact from "./components/Contact";
 
 class App {
 
@@ -22,6 +24,8 @@ class App {
         this.events = new Events();
         this.formulas = new Formulas($("#event_formulas"));
         this.teammates = new Teammates($("#team_teammates"));
+        this.booking = new Booking($("#booking-form"));
+        this.booking = new Contact($("#contact-form"));
     }
 
     run() {
@@ -41,7 +45,6 @@ class App {
             form.removeAttr('hidden');
             form.show();
         });
-
 
 
         $('.admin-form textarea').trumbowyg({

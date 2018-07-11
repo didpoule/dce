@@ -23,7 +23,7 @@ class Booking {
 	 *     min=3,
 	 *     max=50,
 	 *     minMessage = "Votre nom doit faire au moins {{ limit }} caractères.",
-	 *     maxMessage =  "Votre nom ne peux faire plus de {{limit }} caractères."
+	 *     maxMessage =  "Votre nom ne peut faire plus de {{limit }} caractères."
 	 * )
 	 */
 	private $name;
@@ -34,7 +34,7 @@ class Booking {
 	 *     min=3,
 	 *     max=50,
 	 *     minMessage = "Votre prénom doit faire au moins {{ limit }} caractères.",
-	 *     maxMessage =  "Votre prénom ne peux faire plus de {{limit }} caractères."
+	 *     maxMessage =  "Votre prénom ne peut faire plus de {{limit }} caractères."
 	 * )
 	 */
 	private $firstname;
@@ -48,10 +48,10 @@ class Booking {
 	/**
 	 * @ORM\Column(type="string", length=255)
 	 * @Assert\Length(
-	 *     min=10,
+	 *     min=5,
 	 *     max=100,
 	 *     minMessage = "Votre addresse doit faire au moins {{ limit }} caractères.",
-	 *     maxMessage =  "Votre addresse ne peux faire plus de {{limit }} caractères."
+	 *     maxMessage =  "Votre addresse ne peut faire plus de {{limit }} caractères."
 	 * )
 	 */
 	private $address;
@@ -71,15 +71,21 @@ class Booking {
 	 * @ORM\Column(type="string", length=255)
 	 * @Assert\Length(
 	 *     min=3,
-	 *     max=100,
+	 *     max=50,
 	 *     minMessage = "Votre ville doit faire au moins {{ limit }} caractères.",
-	 *     maxMessage =  "Votre ville ne peux faire plus de {{limit }} caractères."
+	 *     maxMessage =  "Votre ville ne peut faire plus de {{limit }} caractères."
 	 * )
 	 */
 	private $city;
 
 	/**
 	 * @ORM\Column(type="string", length=255)
+	 * @Assert\Length(
+	 *     min=3,
+	 *     max=100,
+	 *     minMessage = "Votre pays doit faire au moins {{ limit }} caractères.",
+	 *     maxMessage =  "Votre pays ne peut faire plus de {{limit }} caractères."
+	 * )
 	 */
 	private $country;
 
@@ -89,7 +95,7 @@ class Booking {
 	 *     min=3,
 	 *     max=12,
 	 *     minMessage = "Votre numéro de téléphone doit faire au moins {{ limit }} caractères.",
-	 *     maxMessage =  "Votre numéro de téléhpone ne peux faire plus de {{limit }} caractères."
+	 *     maxMessage =  "Votre numéro de téléhpone ne peu faire plus de {{limit }} caractères."
 	 * )
 	 */
 	private $phone;

@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @method Event|null find( $id, $lockMode = null, $lockVersion = null )
@@ -56,6 +57,21 @@ class EventRepository extends ServiceEntityRepository {
 			->orderBy('e.added', 'DESC')
 			->getQuery()
 			->setMaxResults(1)
+			->execute()[0];
+	}
+
+	public function findNext() {
+
+		$now = new \DateTime();
+
+		return $this->createQueryBuilder('e')
+			->addSelect('e')
+			->where('e.added >= :now')
+			->andWhere('e.published = 1')
+			->orderBy('e.added', 'ASC')
+			->setMaxResults(1)
+			->setParameter('now', $now)
+			->getQuery()
 			->execute()[0];
 	}
 }

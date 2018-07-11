@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use App\Entity\Formula;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -25,16 +26,15 @@ class BookingType extends AbstractType {
 		$builder
 			->add( 'name', TextType::class, [ 'label' => 'nom' ] )
 			->add( 'firstname', TextType::class, [ 'label' => 'prénom' ] )
-			->add( 'birthday', DateType::class, [
-				'label'  => 'date de naissance',
-
+			->add( 'birthday', BirthdayType::class, [
+				'label' => 'date de naissance'
 			] )
 			->add( 'address', TextType::class, [ 'label' => 'adresse' ] )
 			->add( 'zipcode', NumberType::class, [ 'label' => 'code postal' ] )
 			->add( 'city', TextType::class, [ 'label' => 'ville' ] )
 			->add( 'country', CountryType::class, [
-				'label'      => 'pays',
-				'empty_data' => 'FR'
+				'label' => 'pays',
+				'data'  => $builder->getData()->getCountry() ?? 'FR'
 			] )
 			->add( 'phone', TextType::class, [ 'label' => 'téléphone' ] )
 			->add( 'formula', EntityType::class, [
