@@ -33,13 +33,15 @@ class GalleryType extends AbstractType {
 						}
 					}
 					$qb = $er->createQueryBuilder( 'e' );
+					if(isset($results)) {
+						foreach ( $results as $result ) {
+							$qb->andWhere( 'e.id = :id' )
+							   ->setParameter( 'id', $result->getId() );
+						}
 
-					foreach ( $results as $result ) {
-						$qb->andWhere( 'e.id = :id' )
-						   ->setParameter( 'id', $result->getId() );
+						return $qb;
 					}
-
-					return $qb;
+					return null;
 				},
 				'choice_label'  => 'title',
 				'disabled'      => $entity ? true : false
