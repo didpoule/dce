@@ -1,7 +1,6 @@
 export default class Home {
 
     constructor() {
-        this.event = $(".featured-event");
         this.post = $(".featured-post");
         this.services = $(".prestation");
         this.setBackgrounds();
@@ -16,10 +15,6 @@ export default class Home {
         });
 
         let eventImg = $(this.event).children('.section-img');
-
-        eventImg.css('background', 'url(' + eventImg.data('bg') + ') no-repeat center');
-        eventImg.css('background-size', 'contain');
-        this.event.css('height', eventImg.children('img').height());
 
         let postImg = $(this.post).children('.section-img');
 

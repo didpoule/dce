@@ -11,7 +11,8 @@ export default class Teammates extends Component {
         this.teammates = $(".team-member");
         this.newLink.before(this.teammates.last());
 
-        this.e.data('index', this.e.find(':input').length);
+        this.e.data('index', this.teammates.length);
+
         this.addBtn.on('click', () => {
             this.addTeammate(this.e, this.newLink);
         });
@@ -46,8 +47,7 @@ export default class Teammates extends Component {
 
         e.data('index', index + 1);
 
-        let newFormDiv = $('<div class="form-group"></div>').append(newForm);
-
+        let newFormDiv = $('<div class="form-group team-member"></div>').append(newForm);
 
         newLink.before(newFormDiv);
 

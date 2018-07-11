@@ -11,8 +11,7 @@ export default class Formulas extends Component {
         this.formulas = $(".event-formula");
         this.newLink.before(this.formulas.last());
 
-
-        this.e.data('index', this.e.find(':input').length);
+        this.e.data('index', this.formulas.length);
         this.addBtn.on('click', (e) => {
             this.addFormula(this.e, this.newLink);
         });
@@ -47,7 +46,6 @@ export default class Formulas extends Component {
         e.data('index', index + 1);
 
         let newFormDiv = $('<div class="form-group"></div>').append(newForm);
-
 
         newLink.before(newFormDiv);
 

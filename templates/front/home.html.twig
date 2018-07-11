@@ -13,7 +13,7 @@
          #}
     </div>
 
-    <section class="dce-bg-dark">
+    <section class="dce-bg-dark featured-event">
         <div class="section-header">
             <h2 class="dce-text-light dce-bg-dark underlined underlined-light text-center">
                 {% if event is not null %}
@@ -24,9 +24,9 @@
             </h2>
         </div>
         <div class="row">
-            <div class="section-content col-12 featured-event">
-                <div class="section-img col-12 col-md-6 offset-md-3" data-bg="{{ event.image.url }}">
-                    <img src="{{ event.image.url }}" alt="{{ event.image.alt }}">
+            <div class="section-content col-12">
+                <div class="section-img col-12">
+                    <img src="{{ event.image.url }}" alt="{{ event.image.alt }}" class="img-responsive">
                 </div>
             </div>
         </div>
