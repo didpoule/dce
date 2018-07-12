@@ -25,6 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class FrontController extends Controller {
 
@@ -34,9 +35,9 @@ class FrontController extends Controller {
 	public function homeAction() {
 
 		return $this->render( 'front/home.html.twig', [
-			'event' => $this->getDoctrine()->getRepository(Event::class)->findNext(),
-			'post' => $this->getDoctrine()->getRepository(Post::class)->findLastPost(),
-			'services' => $this->getDoctrine()->getRepository(Post::class)->findServices()
+			'event'    => $this->getDoctrine()->getRepository( Event::class )->findNext(),
+			'post'     => $this->getDoctrine()->getRepository( Post::class )->findLastPost(),
+			'services' => $this->getDoctrine()->getRepository( Post::class )->findServices()
 		] );
 	}
 
@@ -116,7 +117,7 @@ class FrontController extends Controller {
 		return $this->render( 'front/events.html.twig', [
 			'events' => $this->getDoctrine()->getRepository( Event::class )->findLasts( MAX_PER_PAGE ),
 			'count'  => $count,
-			'pages'  =>  intval( ceil( $count / MAX_PER_PAGE ) )
+			'pages'  => intval( ceil( $count / MAX_PER_PAGE ) )
 		] );
 	}
 
@@ -125,7 +126,6 @@ class FrontController extends Controller {
 	 * @ParamConverter("event", class="App\Entity\Event")
 	 */
 	public function eventAction( BookingHandler $handler, Event $event = null ) {
-
 		if ( ! $event ) {
 			return $this->redirectToRoute( 'front_404', [
 				'message' => "Le workshop demandé n'existe pas."
@@ -280,4 +280,25 @@ class FrontController extends Controller {
 
 		return new Response( $serializer->serialize( $datas, 'json' ) );
 	}
+
+	/**
+	 * @param $className
+	 * @param ValidatorInterface $validator
+	 * @Route("/validator_ajax/{className}", name="front_ajax_validator")
+	 *
+	 */
+	public function ajaxGetValidator( $className, ValidatorInterface $validator ) {
+
+		if ( ucfirst( $className ) === 'Booking' ) {
+			$datas = $validator->getMetadataFor( Booking::class );
+		} elseif ( ucfirst( $className ) === 'Contact' ) {
+			$datas = $validator->getMetadataFor( Contact::class );
+		}
+
+		$serializer = $this->get( 'jms_serializer' );
+
+		return new Response( $serializer->serialize( $datas, 'json' ) );
+
+	}
+
 }

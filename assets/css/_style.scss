@@ -693,7 +693,7 @@ footer .row {
 .form-group {
   display: flex;
   flex-direction: column;
-  margin: 0 0 20px 0px;
+  margin: 0 0 20px 0;
 }
 
 .dce-form label, legend {
@@ -732,4 +732,8 @@ footer .row {
 .dce-form textarea {
   height: 250px;
   width: 100%;
+}
+
+.article-content img {
+  margin-right: 20px;
 }

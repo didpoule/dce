@@ -8,14 +8,18 @@ use App\Entity\Contact;
 use App\Entity\Event;
 use App\Entity\Gallery;
 use App\Entity\Image;
+use App\Entity\Place;
 use App\Entity\Post;
 use App\Entity\Team;
+use App\Entity\User;
 use App\Handler\AdminBookingHandler;
 use App\Handler\BookingHandler;
 use App\Handler\EventHandler;
 use App\Handler\GalleryHandler;
+use App\Handler\PlaceHandler;
 use App\Handler\PostHandler;
 use App\Handler\TeamHandler;
+use App\Handler\UserHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -306,5 +310,24 @@ class BackController extends Controller {
 		}
 
 		return new RedirectResponse( $this->generateUrl( 'back_contacts' ) );
+	}
+
+	/**
+	 * @param PlaceHandler $handler
+	 * @Route("/place/{id}", name="back_place")
+	 * @ParamConverter("place", class="App\Entity\Place")
+	 */
+	public function placeAction( PlaceHandler $handler, Place $place = null ) {
+
+		return $handler->handle( $place ?? new Place() );
+	}
+
+	/**
+	 * @param UserHandler $handler
+	 * @Route("/user", name="back_user")
+	 */
+	public function userAction( UserHandler $handler ) {
+
+		return $handler->handle( new User() );
 	}
 }

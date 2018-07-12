@@ -3,6 +3,7 @@
 namespace App\Handler;
 
 use App\Form\BookingType;
+use App\Service\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +13,11 @@ class BookingHandler extends Handler {
 
 	private $em;
 
-	public function __construct( EntityManagerInterface $em ) {
-		$this->em = $em;
+	private $mailer;
+
+	public function __construct( EntityManagerInterface $em, Mailer $mailer ) {
+		$this->em     = $em;
+		$this->mailer = $mailer;
 	}
 
 	/**

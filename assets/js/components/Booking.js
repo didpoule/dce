@@ -5,109 +5,136 @@ export default class Booking extends Component {
     constructor(e) {
         super(e);
 
-        this.validate();
+        this.validator = {};
+        this.getValidator();
 
         this.messages = {
-            'invalid': {
-                'name': 'Votre nom doit comporter entre 3 et 50 caractères.',
-                'firstname': 'Votre prénom doit comporter entre 3 et 50 caractères.',
-                'day': 'Ce jour est invalide.',
-                'month': 'Ce mois est invalide',
-                'year': 'Cette année est invalide.',
-                'address': 'Votre adresse doit comporter 5 et 100 caractères.',
-                'zipcode': 'Votre code postal doit être numérique et comporter 5 chiffres.',
-                'city': 'Votre ville doit comporter entre 3 et 50 caractères.',
-                'country': 'Nom de pays incorrect',
-                'phone': 'Votre numéro de téléphone doit comporter entre 3 et 12 caractères',
-                'email': "L'adresse email doit être au format nom@domaine.extension",
-                'formula': 'Formule incorrecte.'
-            },
+            'invalid': {},
         };
-    }
 
-    validate() {
-
-        $('#booking_name').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 3) ? this.setColor($this, false) : this.setColor($this);
-        });
-
-        $('#booking_firstname').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 3) ? this.setColor($this, false) : this.setColor($this);
-        });
-
-        $('#booking_birthday_day').focusout((e) => {
-            let $this = $(e.currentTarget);
-            let val = parseInt($this.val());
-            (isNaN(val) || (val < 1 || val > 31))
-                ? this.setColor($this, false)
-                : this.setColor($this)
-            ;
-
-        });
-
-        $('#booking_birthday_month').focusout((e) => {
-            let $this = $(e.currentTarget);
-            let val = parseInt($this.val());
-            (isNaN(val) || (val < 1 || val > 12))
-                ? this.setColor($this, false)
-                : this.setColor($this)
-            ;
-
-        });
-
-        $('#booking_birthday_year').focusout((e) => {
-            let $this = $(e.currentTarget);
-            let val = parseInt($this.val());
-            (isNaN(val) || val > (new Date().getFullYear()))
-                ? this.setColor($this, false)
-                : this.setColor($this)
-            ;
-
-        });
-
-        $('#booking_address').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 10) ? this.setColor($this, false) : this.setColor($this);
-        });
-
-        $('#booking_zipcode').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 5 && !Number.isInteger($this.val())) ? this.setColor($this, false) : this.setColor($this);
-        });
-
-        $('#booking_city').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 3) ? this.setColor($this, false) : this.setColor($this);
-        });
-
-        $('#booking_country').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length != 2) ? this.setColor($this, false) : this.setColor($this);
-        });
-
-        $('#booking_phone').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 3) ? this.setColor($this, false) : this.setColor($this);
-        });
-
-        $('#booking_formula').focusout((e) => {
-            let $this = $(e.currentTarget);
-            let val = parseInt($this.val());
-
-            (isNaN(val)) ? this.setColor($this, false) : this.setColor($this);
-        });
-
-        $('#booking_email').focusout((e) => {
-            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            let $this = $(e.currentTarget);
-            (!$this.val().match(re)) ? this.setColor($this, false) : this.setColor($this);
-        });
+        this.constraints = {};
 
     }
 
-    setColor(element, success = true) {
+    getValidator() {
+
+        return $.ajax({
+            url: 'http://localhost:8000/validator_ajax/booking'
+        }).done((datas) => {
+            let validator = JSON.parse(datas);
+            $.each(validator.properties, (property, params) => {
+                this.validator[property] = params.constraints[0];
+
+                this.setMessage(property, params.constraints[0]);
+                this.setConstraint(property, params.constraints[0]);
+
+                this.validate(property);
+
+            });
+
+        });
+    }
+
+    setConstraint(property, params) {
+        if ('min' in params) {
+            this.constraints[property] = {
+                'min': params.min,
+                'max': params.max
+            };
+        } else if ('pattern' in params) {
+
+            this.constraints[property] = {
+                'regex': params.pattern
+            };
+        } else if (property = "birthday") {
+            this.constraints[property] = {
+                'day': {
+                    'min': 1,
+                    'max': 31
+                },
+                'month': {
+                    'min': 1,
+                    'max': 12
+                },
+                'year': {
+                    'min': 0,
+                    'max': (new Date()).getFullYear()
+                }
+            }
+        }
+    }
+
+    setMessage(property, params) {
+
+        let frenchNames = {
+            'name': 'nom',
+            'firstname': 'prénom',
+            'birthday': "date d'anniversaire",
+            'day': 'jour',
+            'month': 'mois',
+            'year': 'année',
+            'address': 'adresse',
+            'zipcode': 'code postal',
+            'city': 'ville',
+            'country': 'pays',
+            'phone': 'numéro de téléphone',
+            'email': 'email',
+            'formula': 'formule'
+        };
+
+        let message = 'Votre ';
+
+        if ('min' in params) {
+            message += frenchNames[property] + ' doit comporter entre ' + params.min + ' et ' + params.max + ' caractères.';
+            this.messages['invalid'][property] = message;
+
+        } else if ('pattern' in params) {
+            message += frenchNames[property] + ' doit être au format "nom@domaine.ext"';
+            this.messages['invalid'][property] = message;
+
+        } else {
+            let properties = ['day', 'month', 'year'];
+            this.messages['invalid'][property] = {};
+            $.each(properties, (index, value) => {
+                let message = "Votre ";
+                message += frenchNames[value] + ' est invalide.';
+                this.messages['invalid'][property][value] = message;
+
+            });
+        }
+
+
+    }
+
+    validate(property) {
+        if (property != 'birthday') {
+
+            $("#booking_" + property).focusout((e) => {
+                let el = $(e.currentTarget);
+                let constraints = this.constraints[property];
+
+                if ('min' in constraints) {
+                    (el.val().length < constraints.min || el.val().length > constraints.max) ? this.toggleMessage(el, false) : this.toggleMessage(el);
+                } else if ('regex' in constraints) {
+                    (!el.val().match(constraints.regex)) ? this.toggleMessage(el, false) : this.toggleMessage(el);
+                }
+            })
+        } else {
+            let properties = ['day', 'month', 'year'];
+
+            $.each(properties, (index, value) => {
+
+                $("#booking_" + property + "_" + value).focusout((e) => {
+                    let el = $(e.currentTarget);
+                    let constraints = this.constraints[property][value];
+
+                    (el.val().length < constraints.min || el.val().length > constraints.max) ? this.toggleMessage(el, false) : this.toggleMessage(el);
+                });
+            })
+        }
+    }
+
+    toggleMessage(element, success = true) {
         let property = this.getPropertyName(element);
 
         if (success) {

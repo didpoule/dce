@@ -1,0 +1,9 @@
+{% extends "back_template.html.twig" %}
+
+{% block title %}Édition d'une adresse{% endblock %}
+{% block adminContent %}
+    <h2 class="dce-text-dark dce-bg-light text-center underlined">Édition d'une adresse</h2>
+    {{ form_start(form, {'attr': {'class': 'offset-md-2 col-md-8 admin-form'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
