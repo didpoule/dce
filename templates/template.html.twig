@@ -6,7 +6,14 @@
     <link rel="stylesheet" href="{{ asset('build/css/app_front.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
+    <link rel="icon" type="image/gif" href="{{ absolute_url(asset('build/images/favicon.png')) }}" />
+    <meta name="description"
+          content="Dance Concept event organise des stages de danses (workshops) donnés par des professionnels et des personnalités de l'émission Danse avec les stars.">
+    <meta property="og:title" content="Dance Concept Event"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://dce.herewedev.com"/>
+    <meta property="og:image" content="{{ absolute_url(asset('build/images/favicon.png')) }}"/>
+    <meta property="og:description" content="Dance Concept event organise des stages de danses (workshops) donnés par des professionnels et des personnalités de l'émission Danse avec les stars.">
     {% block head %} {% endblock %}
     <title>{% block title %}{% endblock %} - Dance Concept event</title>
 </head>

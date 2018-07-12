@@ -5,10 +5,10 @@
         <div class="section-header flex-column mx-auto">
             <h2 class="dce-text-dark dce-bg-light text-center underlined">Contact</h2>
         </div>
-        <div class="single-article dce-bg-dark dce-text-light offset-1 col-md-10">
-            <article class="d-flex flex-row">
+        <div class="single-article dce-bg-dark dce-text-light offset-md-1 col-md-10 col-12">
+            <article class="d-flex flex-row px-0">
                 <div class="article-content col-12 col-md-6">
-                    {{ form_start(form, {'attr': {'id' : 'contact-form', 'class': 'dce-form'}}) }}
+                    {{ form_start(form, {'attr': {'id' : 'contact-form', 'class': 'dce-form col-12'}}) }}
                     <h3 class="dce-text-dark text-center">Formulaire de contact</h3>
                     {{ form_widget(form) }}
                     {{ form_end(form) }}

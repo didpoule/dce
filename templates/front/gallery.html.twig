@@ -12,18 +12,18 @@
                     <a href="#"><i class="fab fa-twitter-square"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div class="section-metas">
-                    <p class="article-date">Date: {{gallery. event.added|localizeddate('medium', 'none') }}</p>
+                <div class="section-metas d-none d-md-block">
+                <p class="article-date">Date: {{gallery. event.added|localizeddate('long', 'none') }}</p>
                     <p class="article-date">Lieu: {{ gallery.event.place }}</p>
                 </div>
             </div>
         </div>
-        <div class="single-article col-12">
-            <article class=" flex-column">
-                <div class="article-image col-md-4">
+        <div class="single-article col-12 px-0 p-md-1">
+            <article class="flex-column px-0 p-md-3 col-12">
+                <div class="article-image col-md-4 col-12">
                     <img src="{{ gallery.event.image.url }}" alt="{{ gallery.event.image.alt }}" class="img-fluid"/>
                 </div>
-                <div class="article-content col-md-12 d-flex flex-space-between dce-bg-dark dce-text-light">
+                <div class="article-content col-12 d-flex flex-space-between dce-bg-dark dce-text-light px-1">
                     <div class="galerie-prev galerie-nav">
                         <i class="fas fa-chevron-left"></i>
                     </div>
@@ -42,7 +42,7 @@
                 </div>
             </article>
         </div>
-        <div class="articles-navigation offset-2">
+        <div class="articles-navigation offset-md-2 offset-1">
             <a href="{{ path('front_galleries') }}" class="dce-btn dce-btn-red"><i class="fas fa-chevron-left"></i>Retour à la liste</a>
         </div>
         <div id="gallery-datas" data-url="{{ url('front_ajax_gallery', {'slug' :  gallery.event.slug }) }}"

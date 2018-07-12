@@ -11,7 +11,7 @@
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-twitter-square"></i></a>
                 </div>
-                <div class="section-metas">
+                <div class="section-metas d-none d-md-block">
                     <p class="article-date">Date: {{ event.added|localizeddate('medium', 'none') }}</p>
                     <p class="article-date">Lieu: {{ event.place }}</p>
                 </div>
@@ -35,7 +35,7 @@
                 </div>
                 <a class="dce-btn dce-btn-red mb-4" id="booking-button" href="#booking-form">Réserver</a>
 
-                {{ form_start(form, {'attr': {'id' : 'booking-form', 'class': 'dce-form', 'hidden' : 'true'}}) }}
+                {{ form_start(form, {'attr': {'id' : 'booking-form', 'class': 'dce-form col-12 col-md-6 px-1 px-md-5', 'hidden' : 'true'}}) }}
                 <h3 class="dce-text-dark text-center">Formulaire de réservation</h3>
                 {{ form_widget(form) }}
                 {{ form_end(form) }}

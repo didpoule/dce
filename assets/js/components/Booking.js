@@ -14,7 +14,7 @@ export default class Booking extends Component {
                 'day': 'Ce jour est invalide.',
                 'month': 'Ce mois est invalide',
                 'year': 'Cette année est invalide.',
-                'address': 'Votre adresse doit comporter 5 et 100 caractères minimum.',
+                'address': 'Votre adresse doit comporter 5 et 100 caractères.',
                 'zipcode': 'Votre code postal doit être numérique et comporter 5 chiffres.',
                 'city': 'Votre ville doit comporter entre 3 et 50 caractères.',
                 'country': 'Nom de pays incorrect',

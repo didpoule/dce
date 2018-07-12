@@ -11,9 +11,10 @@
 
          </iframe>
          #}
+        <img src="{{ asset('build/images/carousel.0f6d348f.jpg') }}" alt="carousel">
     </div>
 
-    <section class="dce-bg-dark featured-event">
+    <section class="dce-bg-dark featured-event col-12">
         <div class="section-header">
             <h2 class="dce-text-light dce-bg-dark underlined underlined-light text-center">
                 {% if event is not null %}
@@ -31,7 +32,7 @@
             </div>
         </div>
     </section>
-    <section class="dce-bg-light">
+    <section class="dce-bg-light col-12">
         <div class="grid grid-fluid d-flex">
             <figure class="col-12 col-md-2"><img src="#" alt=""></figure>
             <figure class="col-12 col-md-2"><img src="#" alt=""></figure>
@@ -47,7 +48,7 @@
             <figure class="col-12 col-md-2"><img src="#" alt=""></figure>
         </div>
     </section>
-    <section class="dce-bg-dark">
+    <section class="dce-bg-dark col-12">
         <div class="section-header">
             <h2 class="dce-text-light dce-bg-dark underlined underlined-light">Prestations</h2>
         </div>
@@ -136,7 +137,7 @@
             </div>
         </div>
     </section>
-    <section class="dce-bg-light dce-text-dark">
+    <section class="dce-bg-light dce-text-dark col-12">
         <div class="section-header">
             <h2 class="dce-bg-light underlined">
                 <a class="dce-text-dark" href="{{ path('front_post', {'slug': post.slug}) }}">{{ post.title }}</a>

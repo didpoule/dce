@@ -30,7 +30,7 @@ class App {
 
     run() {
         let form = $('.dce-form');
-        let pictures = $(".galerie img");
+        let pictures = $("#list-galleries img");
         pictures.each(function () {
             $(this).height(this.width);
         });

@@ -14,7 +14,19 @@
                 <li class="dropdown-item"><a href="{{ path('front_galleries') }}">Galeries</a></li>
                 {{ render(controller('App\\Controller\\FrontController::servicesAction')) }}
                 <li class="dropdown-item"><a href="{{ path('front_contact') }}">Contact</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-header"><h6>Administration <i class="fas fa-cog"></i></h6></li>
+                    <li class="dropdown-item"><a href="{{ path('back_home') }}">Accueil</a></li>
+                    <li class="dropdown-item"><a href="{{ path('back_posts') }}">News</a></li>
+                    <li class="dropdown-item"><a href="{{ path('back_team') }}">Team</a></li>
+                    <li class="dropdown-item"><a href="{{ path('back_club') }}">Club</a></li>
+                    <li class="dropdown-item"><a href="{{ path('back_events') }}">Workshops</a></li>
+                    <li class="dropdown-item"><a href="{{ path('back_galleries') }}">Galeries</a></li>
+                    <li class="dropdown-item"><a href="{{ path('back_contacts') }}">Contact</a></li>
+                {% endif %}
             </ul>
         </li>
+
     </ul>
 </nav>
