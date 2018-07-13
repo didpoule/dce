@@ -21,7 +21,7 @@
             <article>
                 <div class="article-image">
                     {% if event.image is not null %}
-                        <img src="{{ event.image.url }}" alt="{{ event.image.alt }}" class="img-fluid"/>
+                        <img src="{{ event.image.url }}" alt="{{ event.image.alt }}" class="img-responsive col-12 col-md-6 offset-md-3"/>
                     {% endif %}
                 </div>
                 <div class="article-content col-12">

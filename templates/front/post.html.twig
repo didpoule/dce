@@ -21,7 +21,7 @@
             <article>
                 <div class="article-image">
                     {% if post.image is not null %}
-                        <img src="{{ post.image.url }}" alt="{{ post.image.alt }}" class="img-fluid"/>
+                        <img src="{{ post.image.url }}" alt="{{ post.image.alt }}" class="img-responsive  col-12 col-md-6 offset-md-3"/>
                     {% endif %}
                 </div>
                 <div class="article-content">
