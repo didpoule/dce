@@ -11,8 +11,16 @@ use TBoileau\FormHandlerBundle\Handler;
 
 class UserHandler extends Handler {
 
+	/**
+	 * @var EntityManagerInterface
+	 */
 	private $em;
 
+	/**
+	 * UserHandler constructor.
+	 *
+	 * @param EntityManagerInterface $em
+	 */
 	public function __construct( EntityManagerInterface $em ) {
 		$this->em = $em;
 	}
@@ -36,8 +44,13 @@ class UserHandler extends Handler {
 	 */
 	public function onSuccess(): Response {
 		$user = $this->form->getData();
+
+		// Vérification de l'existance de l'utilisateur en bdd
 		if ( $oldUser = $this->em->getRepository( User::class )->findOneBy( [ 'email' => $user->getEmail() ] ) ) {
+
+			// Envoi du nouveau mot de passe pour hashage
 			$oldUser->setPlainPassword( $user->getPlainPassword() );
+
 			$this->em->persist( $oldUser );
 			$this->em->flush();
 

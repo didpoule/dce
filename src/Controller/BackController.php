@@ -28,6 +28,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 /**
+ * Controleur backoffice
+ *
  * Class BackController
  * @package App\Controller
  * @Security("is_granted('ROLE_ADMIN')")
@@ -36,6 +38,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class BackController extends Controller {
 
 	/**
+	 * Accueil Admin
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 * @Route("/", name="back_home")
 	 */
@@ -59,6 +62,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Liste articles
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 * @Route("/news", name="back_posts")
 	 */
@@ -69,6 +73,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Suppression article
 	 * @param Post $post
 	 * @Route("/new/{id}/delete", name="back_post_delete")
 	 * @ParamConverter("post", class="App\Entity\Post")
@@ -86,6 +91,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Liste workshops
 	 * @Route("/workshops", name="back_events")
 	 */
 	public function eventsAction() {
@@ -96,6 +102,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Edition post
 	 * @param Post $post
 	 * @Route("/news/{id}", name="back_post")
 	 * @ParamConverter("post", class="App\Entity\Post")
@@ -107,6 +114,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Liste services
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 * @Route("/services", name="back_services")
 	 */
@@ -118,6 +126,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Edition service
 	 * @param Post $post
 	 * @Route("/services/{id}", name="back_service")
 	 * @ParamConverter("post", class="App\Entity\Post")
@@ -129,6 +138,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Edition Club
 	 * @param Post $post
 	 * @Route("/club", name="back_club")
 	 */
@@ -145,6 +155,7 @@ class BackController extends Controller {
 
 
 	/**
+	 * Edition workshop
 	 * @param Event $event
 	 * @Route("/workshop/{id}", name="back_event")
 	 * @ParamConverter("event", class="App\Entity\Event")
@@ -156,6 +167,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Supression évènement
 	 * @param Event $event
 	 * @Route("/workshop/{id}/delete", name="back_event_delete")
 	 * @ParamConverter("event", class="App\Entity\Event")
@@ -173,6 +185,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Liste réservations
 	 * @param Event $event
 	 * @Route("/workshop/{id}/bookings", name="back_bookings")
 	 * @ParamConverter("event", class="App\Entity\Event")
@@ -193,6 +206,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Édition réservation
 	 * @param Booking|null $booking
 	 * @Route("/booking/{id}", name="back_booking")
 	 * @ParamConverter("booking", class="App\Entity\Booking")
@@ -203,6 +217,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Supression réservation
 	 * @param Booking $booking
 	 * @Route("/booking/{id}/delete", name="back_booking_delete")
 	 * @ParamConverter("booking", class="App\Entity\Booking")
@@ -220,6 +235,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Liste galeries
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 * @Route("/galleries", name="back_galleries")
 	 */
@@ -231,6 +247,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Edition galerie
 	 * @Route("/gallery/{id}", name="back_gallery")
 	 * @ParamConverter("gallery", class="App\Entity\Gallery")
 	 */
@@ -240,6 +257,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Supression galerie
 	 * @param Gallery $gallery
 	 * @Route("/gallery/{id}/delete", name="back_gallery_delete")
 	 * @ParamConverter("gallery", class="App\Entity\Gallery")
@@ -259,6 +277,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Edition team
 	 * @param TeamHandler $handler
 	 * @Route("/team", name="back_team")
 	 */
@@ -270,6 +289,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Liste messages contact
 	 * @Route("/contacts", name="back_contacts")
 	 */
 	public function contactsAction() {
@@ -280,6 +300,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Vue messages contact
 	 * @param Contact $contact
 	 * @Route("/contact/{id}", name="back_contact")
 	 * @ParamConverter("contact", class="App\Entity\Contact")
@@ -293,6 +314,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Supression message contact
 	 * @param Contact $contact
 	 * @Route("/contact/{id}/delete", name="back_contact_delete")
 	 * @ParamConverter("contact", class="App\Entity\Contact")
@@ -313,6 +335,19 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Liste adresses
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @Route("/places", name="back_places")
+	 */
+	public function placesActions() {
+
+		return $this->render('back/places.html.twig', [
+			'places' => $this->getDoctrine()->getRepository(Place::class)->findAll()
+		]);
+	}
+
+	/**
+	 * Edition adresse
 	 * @param PlaceHandler $handler
 	 * @Route("/place/{id}", name="back_place")
 	 * @ParamConverter("place", class="App\Entity\Place")
@@ -323,6 +358,7 @@ class BackController extends Controller {
 	}
 
 	/**
+	 * Edition User
 	 * @param UserHandler $handler
 	 * @Route("/user", name="back_user")
 	 */

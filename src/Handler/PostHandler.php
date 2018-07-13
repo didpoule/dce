@@ -10,10 +10,22 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use TBoileau\FormHandlerBundle\Handler;
 
+/**
+ * Class PostHandler
+ * @package App\Handler
+ */
 class PostHandler extends Handler {
 
+	/**
+	 * @var EntityManagerInterface
+	 */
 	private $em;
 
+	/**
+	 * PostHandler constructor.
+	 *
+	 * @param EntityManagerInterface $em
+	 */
 	public function __construct( EntityManagerInterface $em ) {
 		$this->em = $em;
 	}
@@ -47,6 +59,7 @@ class PostHandler extends Handler {
 		$post->getImage()->setAlt( $post->getTitle() );
 
 
+		// Ajout de catégorie au post
 		if ( ! $post->getCategory() ) {
 			$post->setCategory( $this->em->getRepository( Category::class )->findOneBy( [
 				'name' => isset( $this->extraData['category'] ) ? $this->extraData['category'] : 'posts'

@@ -10,10 +10,23 @@ use Symfony\Component\HttpFoundation\Response;
 use TBoileau\FormHandlerBundle\Handler;
 
 class ContactHandler extends Handler {
+
+	/**
+	 * @var EntityManagerInterface
+	 */
 	private $em;
 
+	/**
+	 * @var Mailer
+	 */
 	private $mailer;
 
+	/**
+	 * ContactHandler constructor.
+	 *
+	 * @param EntityManagerInterface $em
+	 * @param Mailer $mailer
+	 */
 	public function __construct( EntityManagerInterface $em, Mailer $mailer ) {
 		$this->em     = $em;
 		$this->mailer = $mailer;

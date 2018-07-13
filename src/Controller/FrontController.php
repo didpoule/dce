@@ -27,9 +27,16 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+/**
+ * Controleur frontoffice
+ *
+ * Class FrontController
+ * @package App\Controller
+ */
 class FrontController extends Controller {
 
 	/**
+	 * Récupère les entités à afficher sur la page d'accueil.
 	 * @Route("/", name="front_home")
 	 */
 	public function homeAction() {
@@ -42,6 +49,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Récupère les prochains workshops pour menu
 	 * @Route("/next_workshops/{limit}", name="front_next_events", requirements={"limit"="\d+"})
 	 */
 	public function nextWorkshopsAction( int $limit ) {
@@ -51,6 +59,7 @@ class FrontController extends Controller {
 		] );
 	}
 
+	// Récupères les galleries pour menu
 	public function lastGalleriesAction( int $limit ) {
 
 		return $this->render( 'front/last_galleries.html.twig', [
@@ -58,6 +67,7 @@ class FrontController extends Controller {
 		] );
 	}
 
+	// Récupère les services workshops pour menu
 	public function servicesAction() {
 
 		return $this->render( 'front/services.html.twig', [
@@ -66,6 +76,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Liste articles avec pagination
 	 * @Route("/news", name="front_posts")
 	 */
 	public function postsAction() {
@@ -81,6 +92,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Single article
 	 * @Route("/news/{slug}", name="front_post")
 	 * @ParamConverter("post", class="App\Entity\Post")
 	 */
@@ -98,6 +110,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Page "Team"
 	 * @Route("/team", name="front_team")
 	 */
 	public function teamAction() {
@@ -108,6 +121,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Liste des workshops avec pagination
 	 * @Route("/workshops", name="front_events")
 	 */
 	public function eventsAction() {
@@ -122,6 +136,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Single Workshop avec traitement formulaire de réservation
 	 * @Route("/workshop/{slug}", name="front_event")
 	 * @ParamConverter("event", class="App\Entity\Event")
 	 */
@@ -132,11 +147,11 @@ class FrontController extends Controller {
 			] );
 		}
 
-
 		return $handler->handle( new Booking(), [ 'event' => $event ] );
 	}
 
 	/**
+	 * Liste galeries avec pagination
 	 * @Route("/galeries", name="front_galleries")
 	 */
 	public function galleriesAction() {
@@ -151,6 +166,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Single Galerie
 	 * @Route("/galerie/{slug}", name="front_gallery")
 	 * @ParamConverter("event", class="App\Entity\Event")
 	 */
@@ -171,7 +187,6 @@ class FrontController extends Controller {
 
 		$pictures = $this->getDoctrine()->getRepository( Image::class )->getPictures( $gallery, 0 );
 
-
 		return $this->render( 'front/gallery.html.twig', [
 			"gallery"  => $gallery,
 			"pictures" => $pictures,
@@ -180,6 +195,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 *
 	 * @Route("/service/{slug}", name="front_service")
 	 */
 	public function serviceAction( $slug ) {
@@ -198,6 +214,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Page "Club"
 	 * @Route("/club", name="front_club")
 	 */
 	public function clubAction() {
@@ -209,6 +226,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Page Contact
 	 * @Route("/contact", name="front_contact")
 	 */
 	public function contactAction( ContactHandler $handler ) {
@@ -218,15 +236,18 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Page Erreur 404
 	 * @Route("/404", name="front_404")
 	 */
 	public function notFoundAction( $message = "La page demandée n'existe pas." ) {
+
 		return $this->render( 'front/404.html.twig', [
 			'message' => $message
 		] );
 	}
 
 	/**
+	 * Recupération de photos d'une galerie en ajax
 	 * @Route("/galerie_ajax/{slug}/{page}", name="front_ajax_gallery", requirements={"page"="\d+"})
 	 * @ParamConverter("event", class="App\Entity\Event", options={"mapping": {"slug": "slug"}})
 	 */
@@ -242,6 +263,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Récupération de galeries en ajax
 	 * @Route("/galeries_ajax/{page}", name="front_ajax_galleries", requirements={"page"="\d+"})
 	 */
 	public function ajaxGalleriesAction( $page = 0 ) {
@@ -256,6 +278,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Récupération d'articles en ajax
 	 * @Route("/posts_ajax/{page}", name="front_ajax_posts", requirements={"page"="\d+"})
 	 */
 	public function ajaxPostsAction( $page = 0 ) {
@@ -269,6 +292,7 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Récupération workshops en ajax
 	 * @Route("/events_ajax/{page}", name="front_ajax_events", requirements={"page"="\d+"})
 	 */
 	public function ajaxEventsAction( $page = 0 ) {
@@ -282,6 +306,8 @@ class FrontController extends Controller {
 	}
 
 	/**
+	 * Récupération contraintes de validation en ajax
+	 *
 	 * @param $className
 	 * @param ValidatorInterface $validator
 	 * @Route("/validator_ajax/{className}", name="front_ajax_validator")

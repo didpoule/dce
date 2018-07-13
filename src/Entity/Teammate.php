@@ -91,7 +91,7 @@ class Teammate
 	/**
 	 * @param Team $team
 	 */
-	public function setTeam(Team $team ): void {
+	public function setTeam(Team $team = null ): void {
 		$this->team = $team;
 	}
 

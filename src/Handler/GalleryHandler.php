@@ -10,10 +10,22 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use TBoileau\FormHandlerBundle\Handler;
 
+/**
+ * Class GalleryHandler
+ * @package App\Handler
+ */
 class GalleryHandler extends Handler {
 
+	/**
+	 * @var EntityManagerInterface
+	 */
 	private $em;
 
+	/**
+	 * GalleryHandler constructor.
+	 *
+	 * @param EntityManagerInterface $em
+	 */
 	public function __construct( EntityManagerInterface $em ) {
 		$this->em = $em;
 	}
@@ -38,11 +50,14 @@ class GalleryHandler extends Handler {
 	public function onSuccess(): Response {
 		$gallery = $this->form->getData();
 
+		// Traitements images
 		foreach ( $gallery->getPictures() as $picture ) {
+			// Si une seule image
 			if ( $picture instanceof Image ) {
 				$picture->setAlt( $gallery->getEvent()->getTitle() );
 				$gallery->addPicture( $picture );
 			} elseif ( is_array( $picture ) ) {
+				// Si plusieurs fichiers envoyés
 				foreach ( $picture as $file ) {
 					if ( $file instanceof UploadedFile ) {
 						$image = new Image();

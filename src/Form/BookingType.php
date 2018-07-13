@@ -19,8 +19,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Formulaire réservation
+ *
+ * Class BookingType
+ * @package App\Form
+ */
 class BookingType extends AbstractType {
 
+	/**
+	 * @param FormBuilderInterface $builder
+	 * @param array $options
+	 */
 	public function buildForm( FormBuilderInterface $builder, array $options ) {
 
 		$builder
@@ -59,6 +69,9 @@ class BookingType extends AbstractType {
 			] );
 	}
 
+	/**
+	 * @param OptionsResolver $resolver
+	 */
 	public function configureOptions( OptionsResolver $resolver ) {
 		$resolver->setDefaults( [
 			'data_class' => Booking::class,

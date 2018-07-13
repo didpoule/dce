@@ -6,10 +6,16 @@ use App\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * Controleur user
+ *
+ * Class SecurityController
+ * @package App\Controller
+ */
 class SecurityController extends Controller {
 
 	/**
+	 * Page login
 	 * @Route("/login", name="security_login")
 	 */
 	public function loginAction() {

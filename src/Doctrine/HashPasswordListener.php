@@ -7,6 +7,12 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Hashage des mots de passe
+ *
+ * Class HashPasswordListener
+ * @package App\Doctrine
+ */
 class HashPasswordListener implements EventSubscriber {
 
 	/**
@@ -14,16 +20,27 @@ class HashPasswordListener implements EventSubscriber {
 	 */
 	private $passwordEncoder;
 
+	/**
+	 * HashPasswordListener constructor.
+	 *
+	 * @param UserPasswordEncoderInterface $passwordEncoder
+	 */
 	public function __construct( UserPasswordEncoderInterface $passwordEncoder ) {
 
 		$this->passwordEncoder = $passwordEncoder;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getSubscribedEvents() {
 
 		return [ 'prePersist',  'preUpdate'  ];
 	}
 
+	/**
+	 * @param LifecycleEventArgs $args
+	 */
 	public function prePersist( LifecycleEventArgs $args ) {
 
 		$entity = $args->getEntity();
@@ -36,6 +53,9 @@ class HashPasswordListener implements EventSubscriber {
 
 	}
 
+	/**
+	 * @param LifecycleEventArgs $args
+	 */
 	public function preUpdate( LifecycleEventArgs $args ) {
 
 		$entity = $args->getEntity();

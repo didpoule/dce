@@ -17,6 +17,7 @@ class FileUploader {
 		return [ 'prePersist',  'preUpdate'  ];
 	}
 
+	// Génère nom hashé et envoi du fichier dans le serveur
 	public function upload(UploadedFile $file) {
 
 		$fileName = md5(uniqid()).'.'.$file->guessExtension();

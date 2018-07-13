@@ -9,9 +9,22 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use TBoileau\FormHandlerBundle\Handler;
 
+/**
+ * Class EventHandler
+ * @package App\Handler
+ */
 class EventHandler extends Handler {
+
+	/**
+	 * @var EntityManagerInterface
+	 */
 	private $em;
 
+	/**
+	 * EventHandler constructor.
+	 *
+	 * @param EntityManagerInterface $em
+	 */
 	public function __construct( EntityManagerInterface $em ) {
 		$this->em = $em;
 	}
