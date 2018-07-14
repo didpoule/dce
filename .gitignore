@@ -55,3 +55,5 @@ assets/\.DS_Store
 package-lock\.json
 
 var/
+
+.env

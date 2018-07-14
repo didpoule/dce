@@ -606,7 +606,7 @@ footer .row {
 
 .article-content iframe {
   width: 100%;
-  height: 400px;
+  height: 800px;
 }
 
 /* Galeries */
@@ -797,5 +797,923 @@ footer .row {
 @media (max-width: 576px) {
   #contact-form .form-group {
     width: 100%;
+  }
+}
+
+.map {
+  height: auto;
+  position: relative;
+}
+
+#booking-form {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background: rgba(255, 255, 255, 0.75);
+  transform: translate(-10px, -50%);
+}
+
+#booking {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#booking-form .form-group {
+  width: 45%;
+}
+
+#booking-form label,
+#booking-form legend {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0;
+}
+
+#booking-form .form-check-label {
+  text-transform: none;
+  text-align: left;
+}
+
+@media (max-width: 992px) {
+  #booking-form {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 576px) {
+  #booking-form {
+    display: block;
+    position: static;
+    transform: unset;
+  }
+  #booking-form .form-group {
+    width: 100%;
+  }
+
+  .map iframe {
+    height: 400px;
+  }
+}/**
+    Author: Jordan Brito
+    Created: 18/06/2018
+    Description: Main style for Danceconceptevent.com
+ */
+/*Général*/
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+h1, h2, h3, h4, h5, h6, header li, p, a, span, label, input, button, textarea {
+  font-family: 'Muli', 'Arial' !important;
+  font-weight: 200 !important;
+}
+
+h1, h2, h3, h4, h5, h6, header li {
+  letter-spacing: 3px;
+}
+
+h3 {
+  font-size: 1.75em;
+  margin-bottom: 10px;
+}
+
+p, li {
+  letter-spacing: 1px;
+}
+
+li {
+  list-style-type: none;
+}
+
+input:focus, textarea:focus {
+  outline-color: #86190f;
+
+}
+
+.form-inline {
+  justify-content: space-between;
+  width: 50%;
+}
+
+a:hover, i:hover {
+  text-decoration: none !important;
+  transform: perspective(500px) translate3d(0, -5px, 50px) !important;
+}
+
+.dce-text-dark, .separator-dark {
+  color: #282828 !important;
+}
+
+.dce-btn-red {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+1,86190f+100 */
+  background: #000000 !important; /* Old browsers */
+  background: -moz-linear-gradient(left, #000000 1%, #86190f 100%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #000000 1%, #86190f 100%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #000000 1%, #86190f 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#86190f', GradientType=1) !important; /* IE6-9 */
+
+}
+
+img {
+  max-width: 100%;
+}
+
+.dce-btn:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.dce-bg-dark {
+  background-color: #282828 !important;
+}
+
+.dce-text-light, .separator-light {
+  color: #eaeaea !important;
+}
+
+.dce-bg-light {
+  background-color: #eaeaea !important;
+}
+
+.dce-btn {
+  padding: 5px;
+
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bolder;
+  letter-spacing: 5px;
+
+  -webkit-box-shadow: inset 0px -1px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px -1px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px -1px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: unset !important;
+  border: 1px #282828 solid;
+}
+
+#page-content {
+  background: #eaeaea;
+}
+
+.fa-twitter-square, .fa-twitter, .twitter {
+  color: #1da1f2;
+}
+
+.fa-facebook, .fa-facebook-f, .facebook {
+  color: #3b5998;
+}
+
+.fa-instagram, .instagram {
+  color: #e4405f;
+}
+
+.fa-youtube, .youtube {
+  color: #CC181E;
+
+}
+
+.fa-snapchat, .snapchat {
+  color: #FFFA53;
+}
+
+/* Menu */
+
+#header {
+  height: 100px;
+}
+
+#main-menu {
+  justify-content: space-around;
+  align-items: center;
+  font-size: 18px;
+}
+
+#main-menu > li {
+  text-align: center;
+}
+
+#main-menu > li > a {
+  color: #eaeaea;
+}
+
+#main-menu > li > a:hover {
+  text-decoration: none;
+}
+
+#main-menu > li:hover .menu-underline {
+  opacity: 1;
+  width: 100%;
+}
+
+.menu-underline {
+  opacity: 0;
+  width: 1px;
+
+  border-bottom: #eaeaea 2px solid;
+  content: "";
+  margin: auto;
+
+  transition: all .5s ease;
+}
+
+.dropdown-item a {
+  color: #282828;
+}
+
+.logo-container {
+  width: 100px;
+  height: 100px;
+
+  justify-content: center;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-container a {
+  line-height: 100%;
+}
+
+/* Menu hamburger mobile */
+#hamburger-menu {
+  display: flex;
+  height: 100px;
+  align-items: center;
+}
+
+#hamburger-menu i {
+  color: #eaeaea;
+}
+
+.dropdown-toggle::after {
+  color: #eaeaea;
+}
+
+.navbar .logo-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.navbar img {
+  width: 100px !important;
+}
+
+.menu-mobile {
+  width: 100% !important;
+}
+
+/* Carousel */
+
+.carousel {
+  width: 100%;
+  /*
+  height: 600px;
+
+    background: url(../images/carousel.jpg) no-repeat top left;
+    background-size: cover;
+  */
+  overflow: hidden;
+
+}
+
+.carousel iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel img {
+  /*display: none;*/
+  width: 100%;
+  height: auto;
+}
+
+/* Sections */
+
+.section-header {
+  display: flex;
+  margin: auto;
+  margin-bottom: 50px;
+  justify-content: center;
+  width: 75%;
+}
+
+h2 {
+  font-size: 40px;
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+
+h2 a {
+  color: #eaeaea;
+  text-decoration: none;
+}
+
+h2 a:hover {
+  text-decoration: none;
+}
+
+.underlined::after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  position: relative;
+  display: block;
+  border-bottom: 1px #282828 solid;
+  opacity: .1
+}
+
+.underlined-light::after {
+  border-bottom: 1px #eaeaea solid !important;
+
+}
+
+.section-description {
+  width: 75%;
+  margin: auto;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.separator {
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  top: 25%;
+  border-top: 1px solid;
+  content: "";
+
+  opacity: .1;
+}
+
+section {
+  padding: 25px 0;
+}
+
+.section-content {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  margin: auto;
+  flex-wrap: wrap;
+
+}
+
+.section-text p {
+  text-align: right;
+}
+
+.section-img img {
+
+}
+
+/* Grille photos */
+
+.grid-fluid {
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+}
+
+.grid-fluid figure {
+  background: no-repeat center;
+  background-size: cover;
+
+  border: 1px black solid;
+  width: 16.66%;
+  height: 300px;
+  margin: 0;
+}
+
+.grid-fluid figure:nth-child(1), .grid figure:nth-child(1) {
+  background-image: url(../images/grid/01.jpg);
+}
+
+.grid-fluid figure:nth-child(2), .grid figure:nth-child(2) {
+  background-image: url(../images/grid/02.jpg);
+}
+
+.grid-fluid figure:nth-child(3), .grid figure:nth-child(3) {
+  background-image: url(../images/grid/03.jpg);
+}
+
+.grid-fluid figure:nth-child(4), .grid figure:nth-child(4) {
+  background-image: url(../images/grid/04.jpg);
+}
+
+.grid-fluid figure:nth-child(5), .grid figure:nth-child(5) {
+  background-image: url(../images/grid/05.jpg);
+}
+
+.grid-fluid figure:nth-child(6), .grid figure:nth-child(6) {
+  background-image: url(../images/grid/06.jpg);
+}
+
+.grid-fluid figure:nth-child(7), .grid figure:nth-child(7) {
+  background-image: url(../images/grid/07.jpg);
+}
+
+.grid-fluid figure:nth-child(8), .grid figure:nth-child(8) {
+  background-image: url(../images/grid/08.jpg);
+}
+
+.grid-fluid figure:nth-child(9), .grid figure:nth-child(9) {
+  background-image: url(../images/grid/09.jpg);
+}
+
+.grid-fluidfigure:nth-child(10), .grid figure:nth-child(10) {
+  background-image: url(../images/grid/10.jpg);
+}
+
+.grid-fluid figure:nth-child(11), .grid figure:nth-child(11) {
+  background-image: url(../images/grid/11.jpg);
+}
+
+.grid-fluid figure:nth-child(12), .grid figure:nth-child(12) {
+  background-image: url(../images/grid/12.jpg);
+}
+
+/* Services */
+
+.prestation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.prestation-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  height: 450px;
+}
+
+.prestation .background-image {
+  position: absolute;
+  z-index: 1;
+  width: 90%;
+  height: 90%;
+}
+
+#service-workshops {
+  background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(../images/accueil/workshops.jpg);
+}
+
+#service-shows {
+  background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(../images/accueil/shows.jpg);
+}
+
+#service-cours {
+  background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(../images/accueil/cours.jpg);
+}
+
+.prestation a {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+  justify-content: center;
+  margin-bottom: 20px;
+  z-index: 2;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,ffffff+0,ffffff+50,ffffff+100&0+0,1+50,0+100 */
+  background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#00ffffff', GradientType=1); /* IE6-9 */
+
+  padding: 20px;
+  width: 100%;
+}
+
+.prestation i {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.prestation span {
+  font-size: 2em;
+  letter-spacing: 3px;
+  text-align: center;
+
+}
+
+.prestation p:first-child {
+  padding: 20px;
+}
+
+.featured-event img {
+  display: block;
+  margin: 0 auto;
+}
+
+.featured-post p {
+  text-align: left;
+}
+
+/* Pied de page */
+
+footer {
+  padding: 25px 20px;
+}
+
+footer .row {
+  margin: 0 !important;
+  justify-content: space-around !important;
+  align-items: center;
+}
+
+.footer-widget {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.footer-widget ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.footer-widget .flex-row {
+  margin: 0 !important;
+}
+
+.footer-widget li {
+  margin-bottom: 10px;
+}
+
+.footer-widget i {
+  font-size: 2em;
+}
+
+/* Listes actualités */
+
+.list-articles article {
+  padding: 10px 0;
+  margin-bottom: 50px;
+  justify-content: space-around;
+  align-items: center;
+
+  border-radius: 5px;
+}
+
+.article-image img, .article-tumbnail img {
+  border-radius: 5px;
+}
+
+.list-articles .article-content {
+  height: 50%;
+  font-size: .9em;
+}
+
+.article-text {
+  margin-bottom: 20px;
+}
+
+.article-date {
+  font-style: oblique;
+  margin-bottom: 10px;
+}
+
+.articles-pagination {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 50px;
+}
+
+.pagination a {
+  background-color: #282828;
+  color: #eaeaea;
+}
+
+/* Single article */
+
+.single-article {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.single-article article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 25px;
+
+  margin-bottom: 50px;
+}
+
+.single-article .article-image {
+  margin-bottom: 25px;
+}
+
+.articles-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.section-metas {
+  color: #282828;
+  width: 30%;
+}
+
+.section-metas p {
+  margin-bottom: 5px;
+}
+
+.section-socials {
+  display: flex;
+  justify-content: flex-end;
+  width: 30%;
+  font-size: 2em;
+
+}
+
+.section-socials a {
+  margin-left: 10px;
+}
+
+.article-content {
+  margin-bottom: 20px;
+}
+
+.article-content iframe {
+  width: 100%;
+  height: 800px;
+}
+
+/* Galeries */
+
+.list-articles .grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 25px;
+
+}
+
+.list-articles .grid figure {
+  display: flex;
+  background: unset;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Single Galerie */
+
+.single-article .grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 25px;
+}
+
+.single-article .grid figure {
+  display: flex;
+  background: unset;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.galerie-nav {
+  display: flex;
+  margin: auto;
+  align-self: center;
+
+  font-size: 3em;
+
+  cursor: pointer;
+
+}
+
+/* Equipe */
+
+.equipe .grid {
+  padding: 25px 0;
+}
+
+.equipe .grid figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.equipe .grid figure img {
+  margin-bottom: 10px;
+}
+
+.equipe .grid figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.equipe .grid figcaption h5 {
+  font-size: 1.3em;
+  font-style: italic;
+}
+
+/* Formulaire réservation */
+
+.dce-form {
+  display: flex;
+  flex-direction: column;
+  background: #eaeaea;
+
+  padding: 25px;
+
+  border-radius: 5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 20px 0;
+}
+
+.dce-form label, legend {
+  color: #282828;
+}
+
+.dce-form label::first-letter, .dce-form legend::first-letter {
+  text-transform: capitalize;
+}
+
+.dce-form input[type="text"], .dce-form input[type="date"], .dce-form input[type="email"], .dce-form select, .dce-form textarea {
+  color: #eaeaea;
+  background: #282828;
+  padding-left: 10px;
+  border: #86190f solid 1px;
+}
+
+.dce-form input[type='submit'], .dce-form button {
+  margin: auto;
+}
+
+#booking_birthday {
+  width: 100%;
+}
+
+#booking_birthday select {
+  width: 33%;
+}
+
+.alert {
+  margin-top: 25px;
+}
+
+/* Formulaire de contact */
+
+.dce-form textarea {
+  height: 250px;
+  width: 100%;
+}
+
+.article-content img {
+  margin-right: 20px;
+}
+
+.trumbowyg-editor {
+  color: #282828;
+}
+
+/* Formulaire de contact */
+
+#contact-form {
+  background: rgba(255, 255, 255, .5);
+  z-index: 2;
+}
+
+#contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#contact-form h3, #contact-form label, #contact-form legend {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#contact-form-container {
+  align-items: center;
+  justify-content: center;
+
+  background: url(../images/contact.jpg) no-repeat center;
+  background-size: cover;
+}
+
+#contact-form-container::after {
+  position: absolute;
+  content: "";
+  background: rgba(0, 0, 0, .1);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#contact-form .form-group {
+  width: 45%;
+}
+
+.contact-content {
+  width: 100% !important;
+}
+
+/* Responsive formulaire de contact */
+@media (max-width: 576px) {
+  #contact-form .form-group {
+    width: 100%;
+  }
+}
+
+.map {
+  height: auto;
+  position: relative;
+}
+
+#booking-form {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background: rgba(255, 255, 255, 0.75);
+  transform: translate(-10px, -50%);
+}
+
+#booking {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#booking-form .form-group {
+  width: 45%;
+}
+
+#booking-form label,
+#booking-form legend {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0;
+}
+
+#booking-form .form-check-label {
+  text-transform: none;
+  text-align: left;
+}
+
+@media (max-width: 992px) {
+  #booking-form {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 576px) {
+  #booking-form {
+    display: block;
+    position: static;
+    transform: unset;
+  }
+  #booking-form .form-group {
+    width: 100%;
+  }
+
+  .map iframe {
+    height: 400px;
   }
 }

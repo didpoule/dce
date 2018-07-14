@@ -18,27 +18,46 @@
             </div>
         </div>
         <div class="single-article dce-bg-dark dce-text-light offset-md-1 col-md-10 col-12">
-            <article>
+            <article class="px-0 p-md-3">
                 <div class="article-image">
                     {% if event.image is not null %}
-                        <img src="{{ event.image.url }}" alt="{{ event.image.alt }}" class="img-responsive col-12 col-md-6 offset-md-3"/>
+                        <img src="{{ event.image.url }}" alt="{{ event.image.alt }}"
+                             class="img-responsive col-12 col-md-6 offset-md-3"/>
                     {% endif %}
                 </div>
-                <div class="article-content col-12">
+                <div class="article-content col-12 px-0">
                     <p class="article-text">
                         {{ event.content|striptags|striptags|slice(0, 200) ~ '...' }}
                     </p>
-                    <iframe
-                            style="border:0"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC4_uOwGVtnGwYu8Z52PeQQ8HsP4RKtNsw&q={{ event.place|url_encode }}">
-                    </iframe>
-                </div>
-                <a class="dce-btn dce-btn-red mb-4" id="booking-button" href="#booking-form">Réserver</a>
+                    <div class="map">
+                        <iframe
+                                style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC4_uOwGVtnGwYu8Z52PeQQ8HsP4RKtNsw&q={{ event.place|url_encode }}">
+                        </iframe>
 
-                {{ form_start(form, {'attr': {'id' : 'booking-form', 'class': 'dce-form col-12 col-md-6 px-1 px-md-5', 'hidden' : 'true'}}) }}
-                <h3 class="dce-text-dark text-center">Formulaire de réservation</h3>
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
+                        {{ form_start(form, {'attr': {'id' : 'booking-form', 'class': 'dce-form col-12 col-lg-6 col-md-10'}}) }}
+                        <h3 class="dce-text-dark text-center">Formulaire de réservation</h3>
+                        <div id="contact">
+                            {{ form_row(form.name) }}
+                            {{ form_row(form.firstname) }}
+                            {{ form_row(form.birthday) }}
+                            {{ form_row(form.address) }}
+                            {{ form_row(form.zipcode) }}
+                            {{ form_row(form.city) }}
+                            {{ form_row(form.country) }}
+                            {{ form_row(form.phone) }}
+                            {{ form_row(form.formula) }}
+                            {{ form_row(form.email) }}
+                            <div class="form-group align-self-start">
+                                {{ form_label(form.agreeTerms) }}
+                                {{ form_widget(form.agreeTerms) }}
+                                {{ form_errors(form.agreeTerms) }}
+                            </div>
+                            {{ form_row(form.agreeDatas) }}
+                            {{ form_row(form.save) }}
+                        </div>
+                    </div>
+                </div>
             </article>
         </div>
         <div class="articles-navigation offset-md-2 offset-1">
