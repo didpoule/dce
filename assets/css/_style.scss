@@ -132,7 +132,7 @@ img {
 /* Menu */
 
 #header {
-  height: 150px;
+  height: 100px;
 }
 
 #main-menu {
@@ -174,18 +174,25 @@ img {
 }
 
 .logo-container {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
+
+  justify-content: center;
 }
 
 .logo {
   width: 100%;
+  height: 100%;
+}
+
+.logo-container a {
+  line-height: 100%;
 }
 
 /* Menu hamburger mobile */
 #hamburger-menu {
   display: flex;
-  height: 150px;
+  height: 100px;
   align-items: center;
 }
 
@@ -204,7 +211,7 @@ img {
 }
 
 .navbar img {
-  width: 150px !important
+  width: 100px !important;
 }
 
 .menu-mobile {
@@ -740,4 +747,55 @@ footer .row {
 
 .trumbowyg-editor {
   color: #282828;
+}
+
+/* Formulaire de contact */
+
+#contact-form {
+  background: rgba(255, 255, 255, .5);
+  z-index: 2;
+}
+
+#contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#contact-form h3, #contact-form label, #contact-form legend {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#contact-form-container {
+  align-items: center;
+  justify-content: center;
+
+  background: url(../images/contact.jpg) no-repeat center;
+  background-size: cover;
+}
+
+#contact-form-container::after {
+  position: absolute;
+  content: "";
+  background: rgba(0, 0, 0, .1);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#contact-form .form-group {
+  width: 45%;
+}
+
+.contact-content {
+  width: 100% !important;
+}
+
+/* Responsive formulaire de contact */
+@media (max-width: 576px) {
+  #contact-form .form-group {
+    width: 100%;
+  }
 }

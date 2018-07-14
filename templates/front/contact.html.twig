@@ -5,16 +5,24 @@
         <div class="section-header flex-column mx-auto">
             <h2 class="dce-text-dark dce-bg-light text-center underlined">Contact</h2>
         </div>
-        <div class="single-article dce-bg-dark dce-text-light offset-md-1 col-md-10 col-12">
-            <article class="d-flex flex-row px-0">
-                <div class="article-content col-12 col-md-6">
+        <div class="single-article dce-bg-dark dce-text-light offset-md-1 col-md-10 col-12 px-0">
+            <article class="d-flex flex-row px-0" id="contact-form-container">
+                <div class="article-content col-12 col-md-8 offset-md-2 offset-xl-3 col-xl-6 m-0">
                     {{ form_start(form, {'attr': {'id' : 'contact-form', 'class': 'dce-form col-12'}}) }}
                     <h3 class="dce-text-dark text-center">Formulaire de contact</h3>
-                    {{ form_widget(form) }}
-                    {{ form_end(form) }}
-                </div>
-                <div class="col-md-6">
-                    <img src="https://picsum.photos/600/600/?random" alt="image" class="img-fluid img-responsive">
+                    <div id="contact">
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.firstname) }}
+                        {{ form_row(form.company) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.subject) }}
+                        <div class="form-group contact-content">
+                            {{ form_label(form.content) }}
+                            {{ form_widget(form.content) }}
+                            {{ form_errors(form.content) }}
+                        </div>
+                        {{ form_row(form.save) }}
+                    </div>
                 </div>
             </article>
         </div>
