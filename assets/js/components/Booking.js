@@ -44,7 +44,7 @@ export default class Booking extends Component {
         } else if ('pattern' in params) {
 
             this.constraints[property] = {
-                'regex': params.pattern
+                'regex': /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             };
         } else if (property = "birthday") {
             this.constraints[property] = {

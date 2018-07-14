@@ -81,7 +81,7 @@ class Booking {
 	/**
 	 * @ORM\Column(type="string", length=255)
 	 * @Assert\Length(
-	 *     min=3,
+	 *     min=2,
 	 *     max=100,
 	 *     minMessage = "Votre pays doit faire au moins {{ limit }} caractères.",
 	 *     maxMessage =  "Votre pays ne peut faire plus de {{limit }} caractères."

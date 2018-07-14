@@ -5,50 +5,87 @@ export default class Contact extends Component {
     constructor(e) {
         super(e);
 
-        this.validate();
+        this.validator = {};
+        this.getValidator();
 
         this.messages = {
-            'invalid': {
-                'name': 'Votre nom doit comporter entre 3 et 50 caractères.',
-                'firstname': 'Votre prénom doit comporter entre 3 et 50 caractères.',
-                'subject': 'Le sujet doit comporter entre 5 et 100 caractères',
-                'content': 'Votre message doit comporter ente 5 et 500 caractères.',
-                'email': "L'adresse email doit être au format nom@domaine.extension",
-            },
+            'invalid': {},
         };
+
+        this.constraints = {};
     }
 
-    validate() {
+    getValidator() {
 
-        $('#contact_name').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 3) ? this.setColor($this, false) : this.setColor($this);
-        });
+        return $.ajax({
+            url: 'http://localhost:8000/validator_ajax/contact'
+        }).done((datas) => {
+            let validator = JSON.parse(datas);
+            $.each(validator.properties, (property, params) => {
+                this.validator[property] = params.constraints[0];
 
-        $('#contact_firstname').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 3) ? this.setColor($this, false) : this.setColor($this);
-        });
+                this.setMessage(property, params.constraints[0]);
+                this.setConstraint(property, params.constraints[0]);
 
-        $('#contact_subject').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 5) ? this.setColor($this, false) : this.setColor($this);
-        });
+                this.validate(property);
 
-        $('#contact_content').focusout((e) => {
-            let $this = $(e.currentTarget);
-            ($this.val().length < 5) ? this.setColor($this, false) : this.setColor($this);
-        });
+            });
 
-        $('#contact_email').focusout((e) => {
-            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            let $this = $(e.currentTarget);
-            (!$this.val().match(re)) ? this.setColor($this, false) : this.setColor($this);
         });
+    }
+
+    setConstraint(property, params) {
+        if ('min' in params) {
+            this.constraints[property] = {
+                'min': params.min,
+                'max': params.max
+            };
+        } else if ('pattern' in params) {
+
+            this.constraints[property] = {
+                'regex': /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+            };
+        }
+    }
+
+    setMessage(property, params) {
+
+        let frenchNames = {
+            'name': 'nom',
+            'firstname': 'prénom',
+            'phone': 'numéro de téléphone',
+            'email': 'email',
+        };
+
+        let message = 'Votre ';
+
+        if ('min' in params) {
+            message += frenchNames[property] + ' doit comporter entre ' + params.min + ' et ' + params.max + ' caractères.';
+            this.messages['invalid'][property] = message;
+
+        } else if ('pattern' in params) {
+            message += frenchNames[property] + ' doit être au format "nom@domaine.ext"';
+            this.messages['invalid'][property] = message;
+
+        }
+    }
+
+    validate(property) {
+        $("#contact_" + property).focusout((e) => {
+            let el = $(e.currentTarget);
+            let constraints = this.constraints[property];
+
+            if ('min' in constraints) {
+                (el.val().length < constraints.min || el.val().length > constraints.max) ? this.toggleMessage(el, false) : this.toggleMessage(el);
+            } else if ('regex' in constraints) {
+                (!el.val().match(constraints.regex)) ? this.toggleMessage(el, false) : this.toggleMessage(el);
+            }
+        })
 
     }
 
-    setColor(element, success = true) {
+    toggleMessage(element, success = true) {
         let property = this.getPropertyName(element);
 
         if (success) {
